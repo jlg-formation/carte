@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen justify-between">
+  <div class="flex min-h-screen flex-col justify-between">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

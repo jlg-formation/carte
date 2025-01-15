@@ -1,11 +1,11 @@
 <template>
-  <header class="bg-gray-100 flex items-center h-12">
+  <header class="flex h-12 items-center bg-gray-100">
     <NuxtLink
       to="/"
-      class="flex items-center gap-2 px-2 hover:bg-gray-200 rounded-lg"
+      class="flex items-center gap-2 rounded-lg px-2 hover:bg-gray-200"
     >
       <img src="/logo.svg" alt="Logo" class="h-10" />
-      <span class="font-bold text-xl">Cartes</span>
+      <span class="text-xl font-bold">Cartes</span>
     </NuxtLink>
   </header>
 </template>
