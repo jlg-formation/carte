@@ -4,6 +4,10 @@ import { KeyIcon } from "@heroicons/vue/24/solid";
 
 const email = ref("");
 const password = ref("");
+
+const isFormValid = computed(() => {
+  return email.value !== "" && password.value !== "";
+});
 </script>
 
 <template>
@@ -18,11 +22,12 @@ const password = ref("");
         <KeyIcon class="size-6 text-gray-500" />
         <input type="password" placeholder="Password" v-model="password" />
       </label>
-      <button class="btn btn-primary" disabled>Se connecter</button>
+      <button class="btn btn-primary" :disabled="!isFormValid">
+        Se connecter
+      </button>
     </form>
     <NuxtLink to="/new-account" class="btn btn-link font-normal text-black">
       Pas encore de compte ?
     </NuxtLink>
-    {{ email }} / {{ password }}
   </main>
 </template>
