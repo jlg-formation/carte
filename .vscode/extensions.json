@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "usernamehw.errorlens",
+    "mhutchie.git-graph",
+    "xabikos.javascriptsnippets",
+    "whtouche.vscode-js-console-utils",
+    "esbenp.prettier-vscode",
+    "yatki.vscode-surround",
+    "meganrogge.template-string-converter",
+    "vue.volar",
+    "esamatti.unsaved"
+  ]
+}
