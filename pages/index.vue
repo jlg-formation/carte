@@ -1,5 +1,10 @@
+<script setup lang="ts">
+import HeaderLayout from "~/layout/HeaderLayout.vue";
+</script>
+
 <template>
-  <h1>Welcome !</h1>
+  <HeaderLayout />
+
   <header>
     <nav>
       <ul>
