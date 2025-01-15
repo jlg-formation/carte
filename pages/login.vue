@@ -20,7 +20,6 @@ const handleSubmit = async () => {
     console.log("submit");
     isConnecting.value = true;
     await authenticationStore.login(email.value, password.value);
-    await router.replace("/");
   } catch (err) {
     console.log("err: ", err);
   } finally {
