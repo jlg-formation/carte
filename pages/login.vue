@@ -1,6 +1,6 @@
 <script setup>
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
-import { KeyIcon } from "@heroicons/vue/24/solid";
+import { ArrowRightEndOnRectangleIcon, KeyIcon } from "@heroicons/vue/24/solid";
 
 const email = ref("");
 const password = ref("");
@@ -8,6 +8,25 @@ const password = ref("");
 const isFormValid = computed(() => {
   return email.value !== "" && password.value !== "";
 });
+
+const authenticationStore = useAuthenticationStore();
+
+const isConnecting = ref(false);
+
+const router = useRouter();
+
+const handleSubmit = async () => {
+  try {
+    console.log("submit");
+    isConnecting.value = true;
+    await authenticationStore.login(email.value, password.value);
+    await router.replace("/");
+  } catch (err) {
+    console.log("err: ", err);
+  } finally {
+    isConnecting.value = false;
+  }
+};
 </script>
 
 <template>
@@ -22,8 +41,15 @@ const isFormValid = computed(() => {
         <KeyIcon class="size-6 text-gray-500" />
         <input type="password" placeholder="Password" v-model="password" />
       </label>
-      <button class="btn btn-primary" :disabled="!isFormValid">
-        Se connecter
+      <button
+        class="btn btn-primary"
+        :disabled="isConnecting || !isFormValid"
+        @click.prevent="handleSubmit"
+      >
+        <span :class="isConnecting && 'loading loading-spinner'">
+          <ArrowRightEndOnRectangleIcon class="size-6" />
+        </span>
+        <span>Se connecter</span>
       </button>
     </form>
     <NuxtLink to="/new-account" class="btn btn-link font-normal text-black">
