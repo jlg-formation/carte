@@ -1,6 +1,9 @@
 <script setup>
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
 import { KeyIcon } from "@heroicons/vue/24/solid";
+
+const email = ref("");
+const password = ref("");
 </script>
 
 <template>
@@ -9,16 +12,17 @@ import { KeyIcon } from "@heroicons/vue/24/solid";
     <form class="flex w-full max-w-xs flex-col gap-2">
       <label class="input input-bordered flex items-center gap-2">
         <EnvelopeIcon class="size-6 text-gray-500" />
-        <input type="email" placeholder="E-mail" />
+        <input type="email" placeholder="E-mail" v-model="email" />
       </label>
       <label class="input input-bordered flex items-center gap-2">
         <KeyIcon class="size-6 text-gray-500" />
-        <input type="email" placeholder="Password" />
+        <input type="password" placeholder="Password" v-model="password" />
       </label>
       <button class="btn btn-primary" disabled>Se connecter</button>
     </form>
-    <NuxtLink to="/new-account" class="btn btn-link font-normal text-black"
-      >Pas encore de compte ?</NuxtLink
-    >
+    <NuxtLink to="/new-account" class="btn btn-link font-normal text-black">
+      Pas encore de compte ?
+    </NuxtLink>
+    {{ email }} / {{ password }}
   </main>
 </template>
