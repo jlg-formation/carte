@@ -2,6 +2,7 @@
 import {
   ArrowRightEndOnRectangleIcon,
   ArrowRightStartOnRectangleIcon,
+  UserIcon,
 } from "@heroicons/vue/24/solid";
 
 const route = useRoute();
@@ -32,13 +33,16 @@ const handleLogout = async () => {
     <NuxtLink
       v-if="user === undefined"
       to="/login"
-      class="btn btn-neutral btn-sm mx-2 rounded-full"
+      class="btn btn-outline btn-primary btn-sm mx-2"
     >
       <ArrowRightEndOnRectangleIcon class="size-6" />
       <span>Connexion</span>
     </NuxtLink>
     <details v-else class="dropdown dropdown-end mx-2">
-      <summary class="btn btn-sm m-1">{{ user.displayName }}</summary>
+      <summary class="btn btn-sm m-1">
+        <UserIcon class="size-6 text-gray-400" />
+        <span>{{ user.displayName }}</span>
+      </summary>
       <ul
         class="dropdown-content z-[1] flex w-52 flex-col items-center gap-10 rounded-box bg-base-100 p-2 shadow"
       >
