@@ -39,7 +39,7 @@ const handleLogout = async () => {
       <span>Connexion</span>
     </NuxtLink>
     <details v-else class="dropdown dropdown-end mx-2">
-      <summary class="w-54 btn btn-sm m-1 flex">
+      <summary class="w-54 btn btn-sm m-1 flex flex-nowrap">
         <UserIcon class="size-6 text-gray-400" />
         <span>{{ user.displayName }}</span>
       </summary>
