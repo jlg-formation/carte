@@ -1,6 +1,11 @@
 <script setup lang="ts">
-const lat = ref(0);
-const lng = ref(0);
+import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
+import type { GPS } from "~/interfaces/GPS";
+
+const gps = ref<GPS>({
+  latitude: 0,
+  longitude: 0,
+});
 
 const x = ref(0);
 const y = ref(0);
@@ -14,16 +19,15 @@ const menuStyle = computed(() => {
 });
 
 const gpsCoord = computed(() => {
-  return lat.value.toFixed(5) + ", " + lng.value.toFixed(5);
+  return gps.value.latitude.toFixed(5) + ", " + gps.value.longitude.toFixed(5);
 });
 
 const isMenuVisible = ref(false);
 
 const handleContextMenu = (ev: any) => {
   console.log("ev: ", ev);
-  lat.value = ev.latlng.lat;
-  lng.value = ev.latlng.lng;
-  console.log(lat.value + ", " + lng.value);
+  gps.value.latitude = ev.latlng.lat;
+  gps.value.longitude = ev.latlng.lng;
 
   x.value = ev.originalEvent.pageX;
   y.value = ev.originalEvent.pageY;
@@ -37,7 +41,20 @@ const handleClick = () => {
 
 const copyGpsCoord = () => {
   isMenuVisible.value = false;
-  navigator.clipboard.writeText(lat.value + ", " + lng.value);
+  navigator.clipboard.writeText(
+    gps.value.latitude + ", " + gps.value.longitude,
+  );
+};
+
+const placeStore = usePlaceStore();
+
+const addPlace = () => {
+  isMenuVisible.value = false;
+
+  placeStore.add({
+    gps: gps.value,
+    name: "Endroit magnifique",
+  });
 };
 </script>
 
@@ -67,7 +84,14 @@ const copyGpsCoord = () => {
       :style="menuStyle"
     >
       <li>
-        <a @click="copyGpsCoord">{{ gpsCoord }}</a>
+        <a @click="copyGpsCoord">
+          <MapPinIcon class="size-6 text-neutral-500" />
+          <span>{{ gpsCoord }}</span>
+        </a>
+        <a @click="addPlace">
+          <PlusIcon class="size-6 text-neutral-500" />
+          <span>Ajouter un lieu</span>
+        </a>
       </li>
     </ul>
   </div>
