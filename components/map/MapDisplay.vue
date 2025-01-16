@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
 import type { GPS } from "~/interfaces/GPS";
+import type { Place } from "~/interfaces/Place";
 
 const gps = ref<GPS>({
   latitude: 0,
@@ -52,9 +53,20 @@ const addPlace = () => {
   isMenuVisible.value = false;
 
   placeStore.add({
-    gps: gps.value,
+    gps: { ...gps.value },
     name: "Endroit magnifique",
   });
+};
+
+const { places } = storeToRefs(usePlaceStore());
+
+const selectedPlace = ref<Place | undefined>(undefined);
+const handleMarkerMouseover = (place: Place) => {
+  console.log("handleMarkerMouseover", place);
+  selectedPlace.value = place;
+};
+const handleMarkerMouseout = () => {
+  selectedPlace.value = undefined;
 };
 </script>
 
@@ -77,6 +89,24 @@ const addPlace = () => {
         layer-type="base"
         name="OpenStreetMap"
       />
+      <LMarker
+        v-for="place in places"
+        :key="place.gps.latitude"
+        :lat-lng="[place.gps.latitude, place.gps.longitude]"
+        @mouseover="handleMarkerMouseover(place)"
+        @mouseout="handleMarkerMouseout()"
+      >
+        <LIcon
+          :icon-url="
+            selectedPlace === place
+              ? '/marker-icon-2x-green.png'
+              : '/marker-icon-2x-blue.png'
+          "
+          shadow-url="/marker-shadow.png"
+          :icon-size="[25, 41]"
+          :iconAnchor="[16, 37]"
+        ></LIcon>
+      </LMarker>
     </LMap>
     <ul
       v-if="isMenuVisible"
