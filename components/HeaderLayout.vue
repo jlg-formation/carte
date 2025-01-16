@@ -8,8 +8,8 @@ import AuthConnection from "./authentication/AuthConnection.vue";
       to="/"
       class="flex items-center gap-2 rounded-lg px-2 hover:bg-gray-200"
     >
-      <img src="/logo.svg" alt="Logo" class="h-10" />
-      <span class="text-xl font-bold">Cartes</span>
+      <img src="/logo.svg" alt="Logo" class="h-6 md:h-10" />
+      <span class="font-bold md:text-xl">Cartes</span>
     </NuxtLink>
     <AuthConnection />
   </header>
