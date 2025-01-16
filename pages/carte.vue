@@ -3,19 +3,19 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 </script>
 
 <template>
-  <main class="flex-grow p-2">
+  <main class="flex flex-grow">
     <div class="drawer">
       <input id="daisyui-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
         <label
           for="daisyui-drawer"
-          class="btn btn-circle drawer-button absolute bg-white shadow-md"
+          class="btn btn-circle drawer-button absolute z-[9999] m-2 bg-white shadow-md"
         >
           <ChevronRightIcon class="size-6" />
         </label>
         <MapDisplay />
       </div>
-      <div class="drawer-side">
+      <div class="drawer-side z-[9999]">
         <label
           for="daisyui-drawer"
           aria-label="close sidebar"
