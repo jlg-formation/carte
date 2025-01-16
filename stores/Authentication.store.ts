@@ -6,7 +6,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   const afterLoginRoute = ref("/");
 
   const login = async (email: string, password: string) => {
-    await sleep(1000);
+    await sleep(300);
     console.log("email: ", email);
     console.log("password: ", password);
     user.value = {
