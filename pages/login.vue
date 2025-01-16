@@ -51,8 +51,6 @@ const handleSubmit = async () => {
         <span>Se connecter</span>
       </button>
     </form>
-    <NuxtLink to="/new-account" class="btn btn-link font-normal text-black">
-      Pas encore de compte ?
-    </NuxtLink>
+    <NuxtLink to="/new-account" class="link"> Pas encore de compte ? </NuxtLink>
   </main>
 </template>
