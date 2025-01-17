@@ -12,8 +12,12 @@ const x = ref(0);
 const y = ref(0);
 
 const menuStyle = computed(() => {
+  const width = window.innerWidth;
+  const menuWidth = 240;
+  const left = x.value + menuWidth > width ? x.value - menuWidth : x.value;
+
   const result = {
-    left: `${x.value}px`,
+    left: `${left}px`,
     top: `calc(${y.value}px - 3rem)`,
   };
   return result;
@@ -51,12 +55,20 @@ const copyGpsCoord = () => {
 
 const placeStore = usePlaceStore();
 
-const addPlace = async () => {
-  isMenuVisible.value = false;
+const isAdding = ref(false);
 
+const addPlace = async () => {
+  isAdding.value = true;
+};
+
+const name = ref("Endroit Magnifique");
+
+const addPlace2 = async () => {
+  isMenuVisible.value = false;
+  isAdding.value = false;
   await placeStore.add({
     gps: { ...gps.value },
-    name: "Endroit magnifique",
+    name: name.value,
   });
 };
 
@@ -122,14 +134,14 @@ const { places } = storeToRefs(placeStore);
     </LMap>
     <ul
       v-if="isMenuVisible"
-      class="menu menu-vertical absolute z-[9999] rounded-box bg-white"
+      class="menu menu-vertical absolute z-[9999] w-60 rounded-box bg-white"
       :style="menuStyle"
     >
       <template v-if="menuPlace">
         <li>
           <a @click="removePlace(menuPlace)">
             <PlusIcon class="size-6 text-neutral-500" />
-            <span>Supprimer</span>
+            <span>Supprimer le lieu</span>
           </a>
         </li>
       </template>
@@ -141,10 +153,13 @@ const { places } = storeToRefs(placeStore);
           </a>
         </li>
         <li>
-          <a @click="addPlace">
+          <a @click="addPlace" v-if="!isAdding">
             <PlusIcon class="size-6 text-neutral-500" />
             <span>Ajouter un lieu</span>
           </a>
+          <form @submit.prevent="addPlace2" v-else>
+            <input type="text" class="input" v-model="name" />
+          </form>
         </li>
       </template>
     </ul>
