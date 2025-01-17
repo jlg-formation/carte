@@ -28,6 +28,8 @@ export default {
           width: "100%",
           "max-width": "80ch",
           margin: "0 auto",
+          position: "relative",
+          "z-index": -10,
         },
         ".page-title": {
           "font-size": "1.5rem",

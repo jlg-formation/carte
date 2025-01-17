@@ -1,5 +1,5 @@
 <template>
-  <HeaderLayout />
+  <HeaderLayout class="relative z-0" />
   <slot />
-  <FooterLayout />
+  <FooterLayout class="relative z-0" />
 </template>

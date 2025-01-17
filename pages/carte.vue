@@ -3,7 +3,7 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 </script>
 
 <template>
-  <main class="flex flex-grow">
+  <main class="relative -z-10 flex flex-grow">
     <div class="drawer">
       <input id="daisyui-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
