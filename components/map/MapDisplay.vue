@@ -78,6 +78,8 @@ const handleMarkerMouseover = (place: Place) => {
 const handleMarkerMouseout = () => {
   selectedPlace.value = undefined;
 };
+
+const { places } = storeToRefs(placeStore);
 </script>
 
 <template>
@@ -100,7 +102,7 @@ const handleMarkerMouseout = () => {
         name="OpenStreetMap"
       />
       <LMarker
-        v-for="place in placeStore.places"
+        v-for="place in places"
         :key="place.gps.latitude"
         :lat-lng="[place.gps.latitude, place.gps.longitude]"
         @mouseover="handleMarkerMouseover(place)"
