@@ -44,6 +44,7 @@ const handleContextMenu = (ev: any) => {
 
 const handleClick = () => {
   isMenuVisible.value = false;
+  isAdding.value = false;
 };
 
 const copyGpsCoord = () => {
@@ -61,7 +62,7 @@ const addPlace = async () => {
   isAdding.value = true;
 };
 
-const name = ref("Endroit Magnifique");
+const name = ref("");
 
 const addPlace2 = async () => {
   isMenuVisible.value = false;
@@ -70,6 +71,7 @@ const addPlace2 = async () => {
     gps: { ...gps.value },
     name: name.value,
   });
+  name.value = "";
 };
 
 const removePlace = async (place: Place) => {
@@ -158,7 +160,13 @@ const { places } = storeToRefs(placeStore);
             <span>Ajouter un lieu</span>
           </a>
           <form @submit.prevent="addPlace2" v-else>
-            <input type="text" class="input" v-model="name" />
+            <input
+              placeholder="Nom"
+              v-focus
+              type="text"
+              class="input input-sm input-bordered"
+              v-model="name"
+            />
           </form>
         </li>
       </template>
