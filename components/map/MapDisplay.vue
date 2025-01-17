@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
+import { MapPinIcon, PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
 import type { GPS } from "~/interfaces/GPS";
 import type { Place } from "~/interfaces/Place";
 
@@ -65,12 +65,31 @@ const addPlace = async () => {
 const name = ref("");
 
 const addPlace2 = async () => {
+  if (name.value === "") {
+    return;
+  }
   isMenuVisible.value = false;
   isAdding.value = false;
   await placeStore.add({
     gps: { ...gps.value },
     name: name.value,
   });
+  name.value = "";
+};
+
+const isUpdating = ref(false);
+const updatePlace = async () => {
+  isUpdating.value = true;
+};
+
+const updatePlace2 = async () => {
+  if (name.value === "") {
+    return;
+  }
+
+  isMenuVisible.value = false;
+  isUpdating.value = false;
+  // await placeStore.update(place.id);
   name.value = "";
 };
 
@@ -131,7 +150,16 @@ const { places } = storeToRefs(placeStore);
           shadow-url="/marker-shadow.png"
           :icon-size="[25, 41]"
           :iconAnchor="[16, 37]"
-        ></LIcon>
+        >
+        </LIcon>
+        <LTooltip
+          :options="{
+            offset: { x: -4, y: -36 },
+            direction: 'top',
+          }"
+        >
+          {{ place.name }}
+        </LTooltip>
       </LMarker>
     </LMap>
     <ul
@@ -145,6 +173,22 @@ const { places } = storeToRefs(placeStore);
             <PlusIcon class="size-6 text-neutral-500" />
             <span>Supprimer le lieu</span>
           </a>
+        </li>
+        <li>
+          <a @click="updatePlace" v-if="!isAdding">
+            <PencilIcon class="size-6 text-neutral-500" />
+            <span>Editer le nom</span>
+          </a>
+          <form @submit.prevent="updatePlace2" v-else>
+            <input
+              placeholder="Nom"
+              v-focus
+              type="text"
+              class="input input-sm input-bordered"
+              v-model="name"
+              required
+            />
+          </form>
         </li>
       </template>
       <template v-else>
@@ -166,6 +210,7 @@ const { places } = storeToRefs(placeStore);
               type="text"
               class="input input-sm input-bordered"
               v-model="name"
+              required
             />
           </form>
         </li>
