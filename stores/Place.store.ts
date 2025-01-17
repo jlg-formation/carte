@@ -16,5 +16,15 @@ export const usePlaceStore = defineStore("place", () => {
     console.log("places.value: ", places.value);
   };
 
-  return { places, add, remove };
+  const update = async (place: Place) => {
+    await sleep(10);
+    const foundPlace = places.value.find((p) => p.id === place.id);
+    if (foundPlace === undefined) {
+      return;
+    }
+    foundPlace.name === place.name;
+    foundPlace.gps === place.gps;
+  };
+
+  return { places, add, remove, update };
 });

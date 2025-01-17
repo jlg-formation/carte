@@ -78,18 +78,19 @@ const addPlace2 = async () => {
 };
 
 const isUpdating = ref(false);
-const updatePlace = async () => {
+const updatePlace = async (menuPlace: Place) => {
   isUpdating.value = true;
 };
 
-const updatePlace2 = async () => {
+const updatePlace2 = async (menuPlace: Place) => {
   if (name.value === "") {
     return;
   }
 
   isMenuVisible.value = false;
   isUpdating.value = false;
-  // await placeStore.update(place.id);
+  menuPlace.name = name.value;
+  await placeStore.update(menuPlace);
   name.value = "";
 };
 
@@ -175,11 +176,11 @@ const { places } = storeToRefs(placeStore);
           </a>
         </li>
         <li>
-          <a @click="updatePlace" v-if="!isAdding">
+          <a @click="updatePlace(menuPlace)" v-if="!isUpdating">
             <PencilIcon class="size-6 text-neutral-500" />
             <span>Editer le nom</span>
           </a>
-          <form @submit.prevent="updatePlace2" v-else>
+          <form @submit.prevent="updatePlace2(menuPlace)" v-else>
             <input
               placeholder="Nom"
               v-focus
