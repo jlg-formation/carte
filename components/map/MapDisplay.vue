@@ -26,12 +26,14 @@ const gpsCoord = computed(() => {
 const isMenuVisible = ref(false);
 
 const handleContextMenu = (ev: any) => {
-  console.log("ev: ", ev);
+  console.log("handleContextMenu ev: ", ev);
   gps.value.latitude = ev.latlng.lat;
   gps.value.longitude = ev.latlng.lng;
 
   x.value = ev.originalEvent.pageX;
   y.value = ev.originalEvent.pageY;
+
+  menuPlace.value = selectedPlace.value;
 
   isMenuVisible.value = true;
 };
@@ -49,18 +51,26 @@ const copyGpsCoord = () => {
 
 const placeStore = usePlaceStore();
 
-const addPlace = () => {
+const addPlace = async () => {
   isMenuVisible.value = false;
 
-  placeStore.add({
+  await placeStore.add({
     gps: { ...gps.value },
     name: "Endroit magnifique",
   });
 };
 
-const { places } = storeToRefs(usePlaceStore());
+const removePlace = async (place: Place) => {
+  console.log("removePlace");
+  isMenuVisible.value = false;
+
+  await placeStore.remove([place.id]);
+  console.log("removed");
+  selectedPlace.value = undefined;
+};
 
 const selectedPlace = ref<Place | undefined>(undefined);
+const menuPlace = ref<Place | undefined>(undefined);
 const handleMarkerMouseover = (place: Place) => {
   console.log("handleMarkerMouseover", place);
   selectedPlace.value = place;
@@ -90,7 +100,7 @@ const handleMarkerMouseout = () => {
         name="OpenStreetMap"
       />
       <LMarker
-        v-for="place in places"
+        v-for="place in placeStore.places"
         :key="place.gps.latitude"
         :lat-lng="[place.gps.latitude, place.gps.longitude]"
         @mouseover="handleMarkerMouseover(place)"
@@ -113,16 +123,28 @@ const handleMarkerMouseout = () => {
       class="menu menu-vertical absolute z-[9999] rounded-box bg-white"
       :style="menuStyle"
     >
-      <li>
-        <a @click="copyGpsCoord">
-          <MapPinIcon class="size-6 text-neutral-500" />
-          <span>{{ gpsCoord }}</span>
-        </a>
-        <a @click="addPlace">
-          <PlusIcon class="size-6 text-neutral-500" />
-          <span>Ajouter un lieu</span>
-        </a>
-      </li>
+      <template v-if="menuPlace">
+        <li>
+          <a @click="removePlace(menuPlace)">
+            <PlusIcon class="size-6 text-neutral-500" />
+            <span>Supprimer</span>
+          </a>
+        </li>
+      </template>
+      <template v-else>
+        <li>
+          <a @click="copyGpsCoord">
+            <MapPinIcon class="size-6 text-neutral-500" />
+            <span>{{ gpsCoord }}</span>
+          </a>
+        </li>
+        <li>
+          <a @click="addPlace">
+            <PlusIcon class="size-6 text-neutral-500" />
+            <span>Ajouter un lieu</span>
+          </a>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
