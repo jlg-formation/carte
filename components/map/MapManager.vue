@@ -6,6 +6,7 @@ const { places } = storeToRefs(placeStore);
 
 const handleImport = async () => {
   console.log("handleImport");
+  await placeStore.importJson();
 };
 const handleExport = async () => {
   console.log("handleExport");

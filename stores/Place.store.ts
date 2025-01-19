@@ -27,7 +27,6 @@ export const usePlaceStore = defineStore("place", () => {
   };
 
   const exportJson = async () => {
-    const filename = "places.json";
     const features = places.value.map((p) => {
       return {
         type: "Feature",
@@ -48,5 +47,19 @@ export const usePlaceStore = defineStore("place", () => {
     await saveFile("places.json", JSON.stringify(geojson, undefined, 2));
   };
 
-  return { places, add, remove, update, exportJson };
+  const importJson = async () => {
+    const jsonContent = await readFile("application/json");
+    places.value = JSON.parse(jsonContent).features.map((f) => {
+      return {
+        id: f.properties.id,
+        name: f.properties.name,
+        gps: {
+          longitude: f.geometry.coordinates[0],
+          latitude: f.geometry.coordinates[1],
+        },
+      };
+    });
+  };
+
+  return { places, add, remove, update, exportJson, importJson };
 });
