@@ -3,6 +3,9 @@ import { MapPinIcon, PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
 import type { GPS } from "~/interfaces/GPS";
 import type { Place } from "~/interfaces/Place";
 
+const runtimeConfig = useRuntimeConfig();
+console.log("runtimeConfig: ", runtimeConfig);
+
 const gps = ref<GPS>({
   latitude: 0,
   longitude: 0,
@@ -145,10 +148,10 @@ const { places } = storeToRefs(placeStore);
         <LIcon
           :icon-url="
             selectedPlace === place
-              ? '/marker-icon-2x-green.png'
-              : '/marker-icon-2x-blue.png'
+              ? runtimeConfig.app.baseURL + 'marker-icon-2x-green.png'
+              : runtimeConfig.app.baseURL + 'marker-icon-2x-blue.png'
           "
-          shadow-url="/marker-shadow.png"
+          :shadow-url="runtimeConfig.app.baseURL + 'marker-shadow.png'"
           :icon-size="[25, 41]"
           :iconAnchor="[16, 37]"
         >
