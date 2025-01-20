@@ -49,7 +49,7 @@ export const usePlaceStore = defineStore("place", () => {
 
   const importJson = async () => {
     const jsonContent = await readFile("application/json");
-    places.value = JSON.parse(jsonContent).features.map((f) => {
+    places.value = JSON.parse(jsonContent).features.map((f: any) => {
       return {
         id: f.properties.id,
         name: f.properties.name,
