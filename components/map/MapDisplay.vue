@@ -1,40 +1,24 @@
 <script setup lang="ts">
 import { MapPinIcon, PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
-import type { GPS } from "~/interfaces/GPS";
 import type { Place } from "~/interfaces/Place";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
-import { useMapDisplay } from "~/composables/useMapDisplay";
 
-const { hoverPlace, selectedPlace, mouse } = useMapDisplay();
+const {
+  hoverPlace,
+  selectedPlace,
+  mouse,
+  gps,
+  menuStyle,
+  gpsCoord,
+  isMenuVisible,
+  isAdding,
+  isUpdating,
+  name,
+} = useMapDisplayState();
 
-const gps = ref<GPS>({
-  latitude: 0,
-  longitude: 0,
-});
-
-const menuStyle = computed(() => {
-  const width = window.innerWidth;
-  const menuWidth = 240;
-  const left =
-    mouse.value.x + menuWidth > width
-      ? mouse.value.x - menuWidth
-      : mouse.value.x;
-
-  const result = {
-    left: `${left}px`,
-    top: `calc(${mouse.value.y}px - 3rem)`,
-  };
-  return result;
-});
-
-const gpsCoord = computed(() => {
-  return gps.value.latitude.toFixed(5) + ", " + gps.value.longitude.toFixed(5);
-});
-
-const isMenuVisible = ref(false);
+const placeStore = usePlaceStore();
 
 const handleContextMenu = (ev: any) => {
-  console.log("handleContextMenu ev: ", ev);
   gps.value.latitude = ev.latlng.lat;
   gps.value.longitude = ev.latlng.lng;
 
@@ -42,7 +26,6 @@ const handleContextMenu = (ev: any) => {
   mouse.value.y = ev.originalEvent.pageY;
 
   selectedPlace.value = hoverPlace.value;
-
   isMenuVisible.value = true;
 };
 
@@ -58,15 +41,9 @@ const copyGpsCoord = () => {
   );
 };
 
-const placeStore = usePlaceStore();
-
-const isAdding = ref(false);
-
 const addPlace = async () => {
   isAdding.value = true;
 };
-
-const name = ref("");
 
 const addPlace2 = async () => {
   if (name.value === "") {
@@ -81,7 +58,6 @@ const addPlace2 = async () => {
   name.value = "";
 };
 
-const isUpdating = ref(false);
 const updatePlace = async (menuPlace: Place) => {
   isUpdating.value = true;
 };
