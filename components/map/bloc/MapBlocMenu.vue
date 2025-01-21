@@ -1,68 +1,16 @@
 <script setup lang="ts">
 import { MapPinIcon, PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
-import type { Place } from "~/interfaces/Place";
 
+const { menuStyle, selectedPlace, isAdding, isUpdating, name, gpsCoord } =
+  useMapDisplayState();
 const {
-  gps,
-  menuStyle,
-  hoverPlace,
-  selectedPlace,
-  isMenuVisible,
-  isAdding,
-  isUpdating,
-  name,
-  gpsCoord,
-} = useMapDisplayState();
-const placeStore = usePlaceStore();
-
-const removePlace = async (place: Place) => {
-  console.log("removePlace");
-  isMenuVisible.value = false;
-
-  await placeStore.remove([place.id]);
-  console.log("removed");
-  hoverPlace.value = undefined;
-};
-
-const updatePlace = async () => {
-  isUpdating.value = true;
-};
-
-const updatePlace2 = async (menuPlace: Place) => {
-  if (name.value === "") {
-    return;
-  }
-
-  isMenuVisible.value = false;
-  isUpdating.value = false;
-  menuPlace.name = name.value;
-  await placeStore.update(menuPlace);
-  name.value = "";
-};
-
-const addPlace2 = async () => {
-  if (name.value === "") {
-    return;
-  }
-  isMenuVisible.value = false;
-  isAdding.value = false;
-  await placeStore.add({
-    gps: { ...gps.value },
-    name: name.value,
-  });
-  name.value = "";
-};
-
-const copyGpsCoord = () => {
-  isMenuVisible.value = false;
-  navigator.clipboard.writeText(
-    gps.value.latitude + ", " + gps.value.longitude,
-  );
-};
-
-const addPlace = async () => {
-  isAdding.value = true;
-};
+  removePlace,
+  updatePlace,
+  updatePlace2,
+  copyGpsCoord,
+  addPlace,
+  addPlace2,
+} = useMapDisplayHandlers();
 </script>
 
 <template>
