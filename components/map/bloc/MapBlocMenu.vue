@@ -26,17 +26,17 @@ const {
         </a>
       </li>
       <li>
-        <a @click="updatePlace" v-if="!isUpdating">
+        <a v-if="!isUpdating" @click="updatePlace">
           <PencilIcon class="size-6 text-neutral-500" />
           <span>Editer le nom</span>
         </a>
-        <form @submit.prevent="updatePlace2(selectedPlace)" v-else>
+        <form v-else @submit.prevent="updatePlace2(selectedPlace)">
           <input
-            placeholder="Nom"
+            v-model="name"
             v-focus
+            placeholder="Nom"
             type="text"
             class="input input-sm input-bordered"
-            v-model="name"
             required
           />
         </form>
@@ -50,17 +50,17 @@ const {
         </a>
       </li>
       <li>
-        <a @click="addPlace" v-if="!isAdding">
+        <a v-if="!isAdding" @click="addPlace">
           <PlusIcon class="size-6 text-neutral-500" />
           <span>Ajouter un lieu</span>
         </a>
-        <form @submit.prevent="addPlace2" v-else>
+        <form v-else @submit.prevent="addPlace2">
           <input
-            placeholder="Nom"
+            v-model="name"
             v-focus
+            placeholder="Nom"
             type="text"
             class="input input-sm input-bordered"
-            v-model="name"
             required
           />
         </form>

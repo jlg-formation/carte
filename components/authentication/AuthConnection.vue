@@ -48,7 +48,7 @@ const handleLogout = async () => {
       >
         <li>{{ user.email }}</li>
         <li>
-          <button class="btn" @click="handleLogout" :disabled="isDisconnecting">
+          <button class="btn" :disabled="isDisconnecting" @click="handleLogout">
             <span :class="isDisconnecting && 'loading loading-spinner'">
               <ArrowRightStartOnRectangleIcon class="size-6" />
             </span>

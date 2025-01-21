@@ -31,7 +31,7 @@ const handleMarkerMouseout = () => {
       :icon-url="hoverPlace === place ? selectedMarker : marker"
       :shadow-url="shadowMarker"
       :icon-size="[25, 41]"
-      :iconAnchor="[16, 37]"
+      :icon-anchor="[16, 37]"
     >
     </LIcon>
     <LTooltip :options="{ offset: { x: -4, y: -36 }, direction: 'top' }">

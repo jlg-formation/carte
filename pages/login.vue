@@ -34,11 +34,11 @@ const handleSubmit = async () => {
     <form class="flex w-full max-w-xs flex-col gap-2">
       <label class="input input-bordered flex items-center gap-2">
         <EnvelopeIcon class="size-6 text-gray-500" />
-        <input type="email" placeholder="E-mail" v-model="email" />
+        <input v-model="email" type="email" placeholder="E-mail" />
       </label>
       <label class="input input-bordered flex items-center gap-2">
         <KeyIcon class="size-6 text-gray-500" />
-        <input type="password" placeholder="Password" v-model="password" />
+        <input v-model="password" type="password" placeholder="Password" />
       </label>
       <button
         class="btn btn-primary"
