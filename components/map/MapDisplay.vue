@@ -2,9 +2,10 @@
 import { MapPinIcon, PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
 import type { GPS } from "~/interfaces/GPS";
 import type { Place } from "~/interfaces/Place";
+import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
+import { useMapDisplay } from "~/composables/useMapDisplay";
 
-const runtimeConfig = useRuntimeConfig();
-console.log("runtimeConfig: ", runtimeConfig);
+const { selectedPlace } = useMapDisplay();
 
 const gps = ref<GPS>({
   latitude: 0,
@@ -106,17 +107,7 @@ const removePlace = async (place: Place) => {
   selectedPlace.value = undefined;
 };
 
-const selectedPlace = ref<Place | undefined>(undefined);
 const menuPlace = ref<Place | undefined>(undefined);
-const handleMarkerMouseover = (place: Place) => {
-  console.log("handleMarkerMouseover", place);
-  selectedPlace.value = place;
-};
-const handleMarkerMouseout = () => {
-  selectedPlace.value = undefined;
-};
-
-const { places } = storeToRefs(placeStore);
 </script>
 
 <template>
@@ -138,33 +129,7 @@ const { places } = storeToRefs(placeStore);
         layer-type="base"
         name="OpenStreetMap"
       />
-      <LMarker
-        v-for="place in places"
-        :key="place.gps.latitude"
-        :lat-lng="[place.gps.latitude, place.gps.longitude]"
-        @mouseover="handleMarkerMouseover(place)"
-        @mouseout="handleMarkerMouseout()"
-      >
-        <LIcon
-          :icon-url="
-            selectedPlace === place
-              ? runtimeConfig.app.baseURL + 'marker-icon-2x-green.png'
-              : runtimeConfig.app.baseURL + 'marker-icon-2x-blue.png'
-          "
-          :shadow-url="runtimeConfig.app.baseURL + 'marker-shadow.png'"
-          :icon-size="[25, 41]"
-          :iconAnchor="[16, 37]"
-        >
-        </LIcon>
-        <LTooltip
-          :options="{
-            offset: { x: -4, y: -36 },
-            direction: 'top',
-          }"
-        >
-          {{ place.name }}
-        </LTooltip>
-      </LMarker>
+      <MapBlocMarkers />
     </LMap>
     <ul
       v-if="isMenuVisible"
