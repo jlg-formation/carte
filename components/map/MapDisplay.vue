@@ -5,7 +5,7 @@ import type { Place } from "~/interfaces/Place";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
 import { useMapDisplay } from "~/composables/useMapDisplay";
 
-const { selectedPlace } = useMapDisplay();
+const { hoverPlace, selectedPlace } = useMapDisplay();
 
 const gps = ref<GPS>({
   latitude: 0,
@@ -41,7 +41,7 @@ const handleContextMenu = (ev: any) => {
   x.value = ev.originalEvent.pageX;
   y.value = ev.originalEvent.pageY;
 
-  menuPlace.value = selectedPlace.value;
+  selectedPlace.value = hoverPlace.value;
 
   isMenuVisible.value = true;
 };
@@ -104,10 +104,8 @@ const removePlace = async (place: Place) => {
 
   await placeStore.remove([place.id]);
   console.log("removed");
-  selectedPlace.value = undefined;
+  hoverPlace.value = undefined;
 };
-
-const menuPlace = ref<Place | undefined>(undefined);
 </script>
 
 <template>
@@ -136,19 +134,19 @@ const menuPlace = ref<Place | undefined>(undefined);
       class="menu menu-vertical absolute z-[9999] w-60 rounded-box bg-white"
       :style="menuStyle"
     >
-      <template v-if="menuPlace">
+      <template v-if="selectedPlace">
         <li>
-          <a @click="removePlace(menuPlace)">
+          <a @click="removePlace(selectedPlace)">
             <PlusIcon class="size-6 text-neutral-500" />
             <span>Supprimer le lieu</span>
           </a>
         </li>
         <li>
-          <a @click="updatePlace(menuPlace)" v-if="!isUpdating">
+          <a @click="updatePlace(selectedPlace)" v-if="!isUpdating">
             <PencilIcon class="size-6 text-neutral-500" />
             <span>Editer le nom</span>
           </a>
-          <form @submit.prevent="updatePlace2(menuPlace)" v-else>
+          <form @submit.prevent="updatePlace2(selectedPlace)" v-else>
             <input
               placeholder="Nom"
               v-focus

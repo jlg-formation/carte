@@ -10,13 +10,13 @@ const selectedMarker = base + "marker-icon-2x-green.png";
 const shadowMarker = base + "marker-shadow.png";
 
 const { places } = storeToRefs(usePlaceStore());
-const { selectedPlace } = useMapDisplay();
+const { hoverPlace } = useMapDisplay();
 
 const handleMarkerMouseover = (place: Place) => {
-  selectedPlace.value = place;
+  hoverPlace.value = place;
 };
 const handleMarkerMouseout = () => {
-  selectedPlace.value = undefined;
+  hoverPlace.value = undefined;
 };
 </script>
 
@@ -29,7 +29,7 @@ const handleMarkerMouseout = () => {
     @mouseout="handleMarkerMouseout()"
   >
     <LIcon
-      :icon-url="selectedPlace === place ? selectedMarker : marker"
+      :icon-url="hoverPlace === place ? selectedMarker : marker"
       :shadow-url="shadowMarker"
       :icon-size="[25, 41]"
       :iconAnchor="[16, 37]"
