@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PencilIcon, PlusIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/vue/24/solid";
 
 const { selectedPlace, isUpdating, name } = useMapDisplayState();
 const { removePlace, updatePlace, updatePlace2 } = useMapDisplayHandlers();
@@ -9,7 +9,7 @@ const { removePlace, updatePlace, updatePlace2 } = useMapDisplayHandlers();
   <template v-if="selectedPlace">
     <li>
       <a @click="removePlace(selectedPlace)">
-        <PlusIcon class="size-6 text-neutral-500" />
+        <TrashIcon class="size-6 text-neutral-500" />
         <span>Supprimer le lieu</span>
       </a>
     </li>
