@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@pinia/nuxt", "@nuxtjs/leaflet"],
+  modules: ["@pinia/nuxt", "@nuxtjs/leaflet", "@nuxt/eslint"],
   $production: {
     app: {
       baseURL: "/carte/",
