@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import type L from "leaflet";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
 
 const { hoverPlace, selectedPlace, mouse, gps, isMenuVisible, isAdding } =
   useMapDisplayState();
 
-const handleContextMenu = (ev: any) => {
+const handleContextMenu = (ev: L.LeafletMouseEvent) => {
   gps.value.latitude = ev.latlng.lat;
   gps.value.longitude = ev.latlng.lng;
 

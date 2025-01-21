@@ -13,8 +13,6 @@ const authenticationStore = useAuthenticationStore();
 
 const isConnecting = ref(false);
 
-const router = useRouter();
-
 const handleSubmit = async () => {
   try {
     console.log("submit");

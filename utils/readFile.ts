@@ -12,7 +12,7 @@ export const readFile = (mimeType: string): Promise<string> => {
 
       const reader = new FileReader();
 
-      reader.onload = function (event) {
+      reader.onload = () => {
         if (typeof reader.result !== "string") {
           reject("bad type");
           return;
@@ -20,7 +20,7 @@ export const readFile = (mimeType: string): Promise<string> => {
         resolve(reader.result);
       };
 
-      reader.onerror = function () {
+      reader.onerror = () => {
         reject("Error reading file!");
       };
 

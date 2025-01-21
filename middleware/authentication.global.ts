@@ -1,5 +1,5 @@
 const anonymousPageList = ["/login", "/", "/legal"];
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware((to) => {
   if (anonymousPageList.includes(to.fullPath)) {
     return;
   }
