@@ -5,24 +5,24 @@ import type { Place } from "~/interfaces/Place";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
 import { useMapDisplay } from "~/composables/useMapDisplay";
 
-const { hoverPlace, selectedPlace } = useMapDisplay();
+const { hoverPlace, selectedPlace, mouse } = useMapDisplay();
 
 const gps = ref<GPS>({
   latitude: 0,
   longitude: 0,
 });
 
-const x = ref(0);
-const y = ref(0);
-
 const menuStyle = computed(() => {
   const width = window.innerWidth;
   const menuWidth = 240;
-  const left = x.value + menuWidth > width ? x.value - menuWidth : x.value;
+  const left =
+    mouse.value.x + menuWidth > width
+      ? mouse.value.x - menuWidth
+      : mouse.value.x;
 
   const result = {
     left: `${left}px`,
-    top: `calc(${y.value}px - 3rem)`,
+    top: `calc(${mouse.value.y}px - 3rem)`,
   };
   return result;
 });
@@ -38,8 +38,8 @@ const handleContextMenu = (ev: any) => {
   gps.value.latitude = ev.latlng.lat;
   gps.value.longitude = ev.latlng.lng;
 
-  x.value = ev.originalEvent.pageX;
-  y.value = ev.originalEvent.pageY;
+  mouse.value.x = ev.originalEvent.pageX;
+  mouse.value.y = ev.originalEvent.pageY;
 
   selectedPlace.value = hoverPlace.value;
 
