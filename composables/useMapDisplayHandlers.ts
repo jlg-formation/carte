@@ -44,20 +44,12 @@ export const useMapDisplayHandlers = () => {
     name.value = "";
   };
 
-  const copyGpsCoord = () => {
-    isMenuVisible.value = false;
-    navigator.clipboard.writeText(
-      gps.value.latitude + ", " + gps.value.longitude,
-    );
-  };
-
   const addPlace = () => {
     isAdding.value = true;
   };
 
   return {
     addPlace,
-    copyGpsCoord,
     addPlace2,
     updatePlace,
     updatePlace2,

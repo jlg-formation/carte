@@ -2,7 +2,8 @@
 import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
 
 const { selectedPlace, isAdding, name, gpsCoord } = useMapDisplayState();
-const { copyGpsCoord, addPlace, addPlace2 } = useMapDisplayHandlers();
+const { addPlace, addPlace2 } = useMapDisplayHandlers();
+const { copyGpsCoord } = useMapDisplayClipboard();
 </script>
 
 <template>
