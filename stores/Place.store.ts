@@ -27,7 +27,7 @@ export const usePlaceStore = defineStore("place", () => {
   };
 
   const exportJson = async () => {
-    exportPlaces(places.value);
+    await exportPlaces(places.value);
   };
 
   const importJson = async () => {
