@@ -22,6 +22,7 @@ const handleLogout = async () => {
     isDisconnecting.value = true;
     await authenticationStore.logout();
   } catch (err) {
+    console.log("err: ", err);
   } finally {
     isDisconnecting.value = false;
   }
