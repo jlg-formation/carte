@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
-import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 const { selectedPlace, isAdding, name, gpsCoord } =
   storeToRefs(useMapDisplayStore());
 const { addPlace, addPlace2 } = useMapDisplayHandlers();
-const { copyGpsCoord } = useMapDisplayClipboard();
+const { copyGpsCoord } = useMapDisplayClipboardStore();
 </script>
 
 <template>
