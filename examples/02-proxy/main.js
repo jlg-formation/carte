@@ -2,7 +2,6 @@ const target = {
   firstname: "Jean-Louis",
   lastname: "GUENEGO",
 };
-
 const handler = {
   get(target, prop) {
     if (prop === "displayName") {
@@ -21,16 +20,12 @@ const handler = {
     target[prop] = value;
   },
 };
-
 const proxy = new Proxy(target, handler);
 console.log("proxy.displayName: ", proxy.displayName);
-
 proxy.firstname = "Suzana";
 console.log("proxy.displayName: ", proxy.displayName);
-
 proxy.lastname = "DEMETRESCU";
 console.log("proxy.displayName: ", proxy.displayName);
-
 proxy.displayName = "Nicolas DUPONT";
 console.log("proxy.displayName: ", proxy.displayName);
 console.log("proxy: ", proxy);
