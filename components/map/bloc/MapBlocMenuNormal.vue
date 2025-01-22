@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MapPinIcon, PlusIcon } from "@heroicons/vue/24/solid";
 
-const { selectedPlace, isAdding, name, gpsCoord } =
+const { selectedPlace, isAdding, name, isInvalid, gpsCoord } =
   storeToRefs(useMapDisplayStore());
 const { addPlace, addPlace2 } = useMapDisplayHandlers();
 const { copyGpsCoord } = useMapDisplayClipboardStore();
@@ -27,6 +27,7 @@ const { copyGpsCoord } = useMapDisplayClipboardStore();
           placeholder="Nom"
           type="text"
           class="input input-sm input-bordered"
+          :class="{ 'input-error': isInvalid }"
           required
         />
       </form>

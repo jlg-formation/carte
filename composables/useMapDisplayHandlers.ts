@@ -2,8 +2,15 @@ import type { Place } from "~/interfaces/Place";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 export const useMapDisplayHandlers = () => {
-  const { gps, hoverPlace, isMenuVisible, isAdding, isUpdating, name } =
-    storeToRefs(useMapDisplayStore());
+  const {
+    gps,
+    hoverPlace,
+    isMenuVisible,
+    isAdding,
+    isUpdating,
+    name,
+    isInvalid,
+  } = storeToRefs(useMapDisplayStore());
 
   const placeStore = usePlaceStore();
 
@@ -24,7 +31,6 @@ export const useMapDisplayHandlers = () => {
     if (name.value === "") {
       return;
     }
-
     isMenuVisible.value = false;
     isUpdating.value = false;
     menuPlace.name = name.value;
@@ -33,15 +39,15 @@ export const useMapDisplayHandlers = () => {
   };
 
   const addPlace2 = async () => {
+    if (isInvalid.value) {
+      return;
+    }
     if (name.value === "") {
       return;
     }
     isMenuVisible.value = false;
     isAdding.value = false;
-    await placeStore.add({
-      gps: { ...gps.value },
-      name: name.value,
-    });
+    await placeStore.add({ gps: { ...gps.value }, name: name.value });
     name.value = "";
   };
 
