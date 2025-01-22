@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import CounterComposition from "~/components/CounterComposition.vue";
+import CounterOptions from "~/components/CounterOptions.vue";
+</script>
+
 <template>
   <main class="page">
     <h1 class="page-title font-bold">Mentions Légales</h1>
@@ -22,6 +27,7 @@
       impedit, odio hic error. Consequatur sed voluptatum saepe sapiente modi ut
       neque aliquam, voluptas amet.
     </p>
-    <NiceCounter />
+    <CounterOptions />
+    <CounterComposition />
   </main>
 </template>

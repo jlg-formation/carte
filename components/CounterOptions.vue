@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "NiceCounter",
+  name: "CounterOptions",
   data() {
     return {
       count: 0,
