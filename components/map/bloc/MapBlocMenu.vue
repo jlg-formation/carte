@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { useMapDisplayStore } from "~/stores/MapDisplay.store";
+const { x, y } = useMouse();
 
-const { menuStyle } = storeToRefs(useMapDisplayStore());
+const menuStyle = computed(() => {
+  const width = window.innerWidth;
+  const menuWidth = 240;
+  const left = x.value + menuWidth > width ? x.value - menuWidth : x.value;
+
+  const result = {
+    left: `${left}px`,
+    top: `calc(${y.value}px - 3rem)`,
+  };
+  return result;
+});
 </script>
 
 <template>

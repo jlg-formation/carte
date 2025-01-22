@@ -3,15 +3,15 @@ import type L from "leaflet";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
 
-const { hoverPlace, selectedPlace, mouse, gps, isMenuVisible, isAdding } =
+const { hoverPlace, selectedPlace, gps, isMenuVisible, isAdding } =
   storeToRefs(useMapDisplayStore());
+const mouse = useMouse();
 
 const handleContextMenu = (ev: L.LeafletMouseEvent) => {
   gps.value.latitude = ev.latlng.lat;
   gps.value.longitude = ev.latlng.lng;
 
-  mouse.value.x = ev.originalEvent.pageX;
-  mouse.value.y = ev.originalEvent.pageY;
+  mouse.update(ev.originalEvent);
 
   selectedPlace.value = hoverPlace.value;
   isMenuVisible.value = true;
