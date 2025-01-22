@@ -12,7 +12,7 @@ const isLoginPage = computed(() => route.name === "login");
 
 const authenticationStore = useAuthenticationStore();
 
-const { user } = storeToRefs(authenticationStore);
+const { user, displayName } = storeToRefs(authenticationStore);
 
 const isDisconnecting = ref(false);
 
@@ -42,7 +42,7 @@ const handleLogout = async () => {
     <details v-else class="dropdown dropdown-end mx-2">
       <summary class="w-54 btn btn-sm m-1 flex flex-nowrap">
         <UserIcon class="size-6 text-gray-400" />
-        <span>{{ user.displayName }}</span>
+        <span>{{ displayName }}</span>
       </summary>
       <ul
         class="dropdown-content z-[1] flex w-52 flex-col items-center gap-10 rounded-box bg-base-100 p-2 shadow"
