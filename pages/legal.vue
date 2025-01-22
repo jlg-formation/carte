@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import CounterDeepReactive from "~/components/counter/CounterDeepReactive.vue";
+</script>
+
 <template>
   <main class="page">
     <h1 class="page-title font-bold">Mentions Légales</h1>
@@ -25,5 +29,6 @@
     <CounterOptions />
     <CounterComposition />
     <CounterDeepRef />
+    <CounterDeepReactive />
   </main>
 </template>
