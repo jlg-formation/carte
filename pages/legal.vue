@@ -22,5 +22,6 @@
       impedit, odio hic error. Consequatur sed voluptatum saepe sapiente modi ut
       neque aliquam, voluptas amet.
     </p>
+    <NiceCounter />
   </main>
 </template>
