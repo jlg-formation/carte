@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { PencilIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
-const { selectedPlace, isUpdating, name } = useMapDisplayState();
+const { selectedPlace, isUpdating, name } = storeToRefs(useMapDisplayStore());
 const { removePlace, updatePlace, updatePlace2 } = useMapDisplayHandlers();
 </script>
 

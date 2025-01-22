@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Place } from "~/interfaces/Place";
+import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -9,7 +10,7 @@ const selectedMarker = base + "marker-icon-2x-green.png";
 const shadowMarker = base + "marker-shadow.png";
 
 const { places } = storeToRefs(usePlaceStore());
-const { hoverPlace } = useMapDisplayState();
+const { hoverPlace } = storeToRefs(useMapDisplayStore());
 
 const handleMarkerMouseover = (place: Place) => {
   hoverPlace.value = place;

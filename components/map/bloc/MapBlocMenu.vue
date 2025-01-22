@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { menuStyle } = useMapDisplayState();
+import { useMapDisplayStore } from "~/stores/MapDisplay.store";
+
+const { menuStyle } = storeToRefs(useMapDisplayStore());
 </script>
 
 <template>

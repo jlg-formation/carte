@@ -1,8 +1,9 @@
 import type { Place } from "~/interfaces/Place";
+import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 export const useMapDisplayHandlers = () => {
   const { gps, hoverPlace, isMenuVisible, isAdding, isUpdating, name } =
-    useMapDisplayState();
+    storeToRefs(useMapDisplayStore());
 
   const placeStore = usePlaceStore();
 
