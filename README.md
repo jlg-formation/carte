@@ -39,7 +39,7 @@ Récupération d'un projet VueJS existant fil rouge réalisé avec Nuxt.
 
 ### La réactivité
 
-- La notion de getter, setter et proxy en javascript
+- La notion de getter, setter et proxy en ECMAScript
 - La réactivité avec la notation Options API
 - La réactivité avec la notation Composition API
 - Differences entre ref, reactive
