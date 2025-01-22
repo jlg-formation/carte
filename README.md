@@ -39,7 +39,7 @@ Récupération d'un projet VueJS existant fil rouge réalisé avec Nuxt.
 
 ### La réactivité
 
-- La notion de proxy en javascript
+- La notion de getter, setter et proxy en javascript
 - La réactivité avec la notation Options API
 - La réactivité avec la notation Composition API
 - Differences entre ref, reactive
@@ -73,7 +73,7 @@ Refactoring de quelques éléments réactifs du projet fil rouge
   page
 - Ecriture d'un plugin Pinia pour synchroniser les états avec le localstorage
 
-### Aspects asynchrone
+### Aspects asynchrones
 
 - Rappel sur les callback, promises, async/await, import dynamique
 - Lazy loading des composants
