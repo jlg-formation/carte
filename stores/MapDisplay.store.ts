@@ -15,10 +15,15 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
   const isUpdating = ref(false);
   const name = ref("");
   const isInvalid = ref(false);
+  const isPending = ref(false);
 
   watch(name, async (newName) => {
+    console.log("start validation", newName);
+    isPending.value = true;
     await sleep(2000);
     isInvalid.value = ["bad", "terrible"].includes(newName);
+    isPending.value = false;
+    console.log("end validation", newName);
   });
 
   const gpsCoord = computed(() => {
@@ -37,5 +42,6 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
     isUpdating,
     name,
     isInvalid,
+    isPending,
   };
 });
