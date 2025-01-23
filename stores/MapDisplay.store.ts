@@ -14,17 +14,8 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
   const isAdding = ref(false);
   const isUpdating = ref(false);
   const name = ref("");
-  const isInvalid = ref(false);
-
-  watch(name, (newName) => {
-    console.log("watching name", newName);
-    if (["bad", "verybad"].includes(newName)) {
-      console.log("invalid name");
-      isInvalid.value = true;
-      return;
-    }
-    console.log("valid name");
-    isInvalid.value = false;
+  const isInvalid = computed(() => {
+    return ["bad", "verybad"].includes(name.value);
   });
 
   const gpsCoord = computed(() => {
