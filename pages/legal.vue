@@ -30,5 +30,6 @@ import CounterDeepReactive from "~/components/counter/CounterDeepReactive.vue";
     <CounterComposition />
     <CounterDeepRef />
     <CounterDeepReactive />
+    <CounterShallowRef />
   </main>
 </template>
