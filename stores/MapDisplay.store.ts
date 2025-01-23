@@ -17,7 +17,7 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
   const isInvalid = ref(false);
   const isPending = ref(false);
 
-  watch(name, async (newName) => {
+  const debounced = debounce(500, async (newName: string) => {
     console.log("start validation", newName);
     isPending.value = true;
     await sleep(2000);
@@ -25,6 +25,8 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
     isPending.value = false;
     console.log("end validation", newName);
   });
+
+  watch(name, debounced);
 
   const gpsCoord = computed(() => {
     return (
