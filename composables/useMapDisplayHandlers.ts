@@ -10,6 +10,7 @@ export const useMapDisplayHandlers = () => {
     isUpdating,
     name,
     isInvalid,
+    isPending,
   } = storeToRefs(useMapDisplayStore());
 
   const placeStore = usePlaceStore();
@@ -40,6 +41,9 @@ export const useMapDisplayHandlers = () => {
 
   const addPlace2 = async () => {
     if (isInvalid.value) {
+      return;
+    }
+    if (isPending.value) {
       return;
     }
     if (name.value === "") {
