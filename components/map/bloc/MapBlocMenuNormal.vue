@@ -47,6 +47,7 @@ const { copyGpsCoord } = useMapDisplayClipboardStore();
             <CheckIcon v-else class="size-5 text-gray-400" />
           </template>
         </span>
+        <button class="hidden" :disabled="isInvalid || isPending"></button>
       </form>
     </li>
   </template>

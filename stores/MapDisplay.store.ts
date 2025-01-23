@@ -19,14 +19,16 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
 
   const debounced = debounce(500, async (newName: string) => {
     console.log("start validation", newName);
-    isPending.value = true;
-    await sleep(2000);
+    await sleep(1000);
     isInvalid.value = ["bad", "terrible"].includes(newName);
     isPending.value = false;
     console.log("end validation", newName);
   });
 
-  watch(name, debounced);
+  watch(name, (newName: string) => {
+    isPending.value = true;
+    debounced(newName);
+  });
 
   const gpsCoord = computed(() => {
     return (
