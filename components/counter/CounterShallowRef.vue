@@ -12,7 +12,8 @@ import { shallowRef } from "vue";
 const x = shallowRef({ truc: { trac: { counter: 0 } } });
 
 function increment() {
-  x.value = { truc: { trac: { counter: x.value.truc.trac.counter + 1 } } };
+  x.value.truc.trac.counter++;
+  triggerRef(x);
   console.log("x: ", x);
   console.log("x.value: ", x.value);
 }
