@@ -26,6 +26,7 @@ const handleSubmit = async () => {
 };
 
 const updatePassword = (str: string) => {
+  console.log("str: ", str);
   password.value = str;
 };
 </script>
