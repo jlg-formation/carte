@@ -31,5 +31,6 @@ import CounterDeepReactive from "~/components/counter/CounterDeepReactive.vue";
     <CounterDeepRef />
     <CounterDeepReactive />
     <CounterShallowRef />
+    <MiscPhone />
   </main>
 </template>

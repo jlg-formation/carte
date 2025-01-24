@@ -45,7 +45,7 @@ Récupération d'un projet VueJS existant fil rouge réalisé avec Nuxt.
 - Differences entre ref, reactive
 - La notion de computed, writable computed
 - Utilisation de watch
-- Utilisation de shallowRef, triggerRef, markRaw et readonly
+- Utilisation de shallowRef, triggerRef, customRef, markRaw et readonly
 
 **Travaux Pratique**
 
