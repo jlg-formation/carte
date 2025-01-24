@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { PencilIcon, TrashIcon, CheckIcon } from "@heroicons/vue/24/solid";
+import {
+  PencilIcon,
+  TrashIcon,
+  CheckIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/vue/24/solid";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 const { selectedPlace, isUpdating, name, isInvalid, isPending } =
