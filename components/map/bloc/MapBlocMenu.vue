@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { x, y } = useMouse();
 
+// x.value = 0;
+
 const menuStyle = computed(() => {
   const width = window.innerWidth;
   const menuWidth = 240;

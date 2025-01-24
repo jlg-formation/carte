@@ -7,5 +7,5 @@ export const useMouse = () => {
     y.value = event.pageY;
   };
 
-  return { x, y, update };
+  return { x: readonly(x), y: readonly(y), update };
 };
