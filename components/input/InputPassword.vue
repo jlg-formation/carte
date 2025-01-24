@@ -3,14 +3,14 @@ import { KeyIcon } from "@heroicons/vue/24/solid";
 
 const props = defineProps<{ password: string }>();
 const emit = defineEmits<{
-  (e: "change", password: string): void;
+  (e: "output", password: string): void;
 }>();
 
 const password = ref(props.password);
 
 const handlePassword = (event: Event) => {
   password.value = (event.target as HTMLInputElement).value;
-  emit("change", password.value);
+  emit("output", password.value);
 };
 </script>
 

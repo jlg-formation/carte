@@ -25,9 +25,8 @@ const handleSubmit = async () => {
   }
 };
 
-const updatePassword = (event: InputEvent) => {
-  console.log("event: ", event);
-  password.value = (event.target as HTMLInputElement).value;
+const updatePassword = (str: string) => {
+  password.value = str;
 };
 </script>
 
@@ -39,7 +38,7 @@ const updatePassword = (event: InputEvent) => {
         <EnvelopeIcon class="size-6 text-gray-500" />
         <input v-model="email" type="email" placeholder="E-mail" />
       </label>
-      <InputPassword :password="password" @input="updatePassword" />
+      <InputPassword :password="password" @output="updatePassword" />
       <button
         class="btn btn-primary"
         :disabled="isConnecting || !isFormValid"
