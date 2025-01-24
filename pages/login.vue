@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
-import { ArrowRightEndOnRectangleIcon, KeyIcon } from "@heroicons/vue/24/solid";
+import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 
 const email = ref("");
 const password = ref("");
@@ -24,6 +24,11 @@ const handleSubmit = async () => {
     isConnecting.value = false;
   }
 };
+
+const updatePassword = (event: InputEvent) => {
+  console.log("event: ", event);
+  password.value = (event.target as HTMLInputElement).value;
+};
 </script>
 
 <template>
@@ -34,10 +39,7 @@ const handleSubmit = async () => {
         <EnvelopeIcon class="size-6 text-gray-500" />
         <input v-model="email" type="email" placeholder="E-mail" />
       </label>
-      <label class="input input-bordered flex items-center gap-2">
-        <KeyIcon class="size-6 text-gray-500" />
-        <input v-model="password" type="password" placeholder="Password" />
-      </label>
+      <InputPassword :password="password" @input="updatePassword" />
       <button
         class="btn btn-primary"
         :disabled="isConnecting || !isFormValid"
