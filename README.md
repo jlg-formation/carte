@@ -1,9 +1,6 @@
 # Formation Vue.js : programmation avancée
 
-Vous découvrirez en profondeur les bonnes pratiques de développement des
-applications VueJS version 3. Outre l'organisation du code, la méthodologie de
-développement vous verrez l'intégration de design system, la gestion des styles,
-des tableaux, des formulaires. Vous integrerez VueJS avec d'autres librairies.
+Vous découvrirez en profondeur les bonnes pratiques de développement des applications VueJS version 3. Outre l'organisation du code et la méthodologie de développement, vous verrez l'intégration de design system, la gestion des styles, des tableaux, et des formulaires. Vous intégrerez VueJS avec d'autres librairies.
 
 ## Objectifs pédagogiques
 
@@ -31,9 +28,9 @@ outils modernes de développement front-end.
 - Les types de composant : layout, route, containers, widgets,
 - Décomposer un composant en plusieurs composants : la délégation
 - Factoriser et réutiliser la partie javascript de composant : le composable
-- Quand utiliser la notation Composition API, et la notation Options API
+- Les types de composant : layout, route, containers, widgets
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Récupération d'un projet VueJS existant fil rouge réalisé avec Nuxt.
 
@@ -47,7 +44,7 @@ Récupération d'un projet VueJS existant fil rouge réalisé avec Nuxt.
 - Utilisation de watch
 - Utilisation de shallowRef, triggerRef, customRef, markRaw et readonly
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Refactoring de quelques éléments réactifs du projet fil rouge
 
@@ -58,20 +55,20 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 - Ecoulement des attributs d'un composant sur son template.
 - Les modificateurs d'événements, prédéfinies et personnalisés
 - provide et inject
-- Reduction de code en utilisant les fragments
+- Ecoulement des attributs d'un composant sur son template
 - Teleports
 - Communication avec une store : Pinia
 - Options Store, Setup Store
 - State, Getters, Actions, Plugins
 - Utilisation de store en dehors des composants
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 - Fabrication d'un composant d'input (password avec oeil),
 - Intégration d'un theme dark/light avec provide et inject
-- Utilisation de Teleports pour acccorder les titres de routes avec le titre de
+- Utilisation de Teleports pour accorder les titres de routes avec le titre de
   page
-- Ecriture d'un plugin Pinia pour synchroniser les états avec le localstorage
+- Intégration d'un thème dark/light avec provide et inject
 
 ### Aspects asynchrones
 
@@ -80,7 +77,7 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 - Cas des routes
 - Suspense et Async Components
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Rendre toutes les routes lazy et faire un affichage d'appel d'API back-end avec
 Suspense et un composant d'affichage asynchrone.
@@ -90,10 +87,10 @@ Suspense et un composant d'affichage asynchrone.
 - Ecriture d'un composant input personnalisé.
 - Validation synchrone et asynchrone
 - Notion de dirty et untouched
-- Gestion de formulaire
+- Écriture d'un composant input personnalisé
 - Messages d'erreur
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Refactorer le formulaire d'ajout du projet.
 
@@ -104,7 +101,7 @@ Refactorer le formulaire d'ajout du projet.
 - Les vérifications et les effets lors de changement de route
 - Les routes avec URL dynamiques
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Refactorer le projet pour intégrer des guards sur des pages nécessitant
 l'authentification.
@@ -116,10 +113,11 @@ l'authentification.
 - conversion de variable reactive constante en variable non reactive.
 - v-for avec key
 - recalcul excessif de computed
-- manipulation excessive du DOM avec v-html
+- Conversion de variable réactive constante en variable non réactive
 - reactivité profonde avec des objets complexes
+- Recalcul excessif de computed
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
 Reprendre le formulaire et intégrer le debounce pour une validation asynchrone.
 
@@ -130,7 +128,6 @@ Reprendre le formulaire et intégrer le debounce pour une validation asynchrone.
 - TailwindCSS
 - Intégration avec d'autres librairies (ex: D3, Leaflet)
 
-**Travaux Pratique**
+**Travaux Pratiques**
 
-Faire une page avec une carte Leaflet visualisant des trajet en cours en
-mouvement avec du websocket
+Etude de l'intégration de Leaflet dans VueJS avec Nuxt.
