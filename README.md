@@ -64,11 +64,7 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 
 **Travaux Pratiques**
 
-- Fabrication d'un composant d'input (password avec oeil),
-- Intégration d'un theme dark/light avec provide et inject
-- Utilisation de Teleports pour accorder les titres de routes avec le titre de
-  page
-- Intégration d'un thème dark/light avec provide et inject
+- Gestion des titres de pages dans le projet fil rouge.
 
 ### Aspects asynchrones
 
