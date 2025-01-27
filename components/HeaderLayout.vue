@@ -10,10 +10,6 @@ const base = runtimeConfig.app.baseURL;
   <Teleport to="head">
     <link rel="shortcut icon" :href="base + 'logo.svg'" />
   </Teleport>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
-  />
   <header class="flex h-12 items-center justify-between bg-base-200 pr-2">
     <NuxtLink
       to="/"
