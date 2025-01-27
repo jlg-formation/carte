@@ -34,10 +34,7 @@ const handleSubmit = async () => {
         <EnvelopeIcon class="size-6 text-gray-500" />
         <input v-model="email" type="email" placeholder="E-mail" />
       </label>
-      <InputPassword
-        :model-value="password"
-        @update:model-value="($event: string) => (password = $event)"
-      />
+      <InputPassword v-model="password" />
       <button
         class="btn btn-primary"
         :disabled="isConnecting || !isFormValid"
