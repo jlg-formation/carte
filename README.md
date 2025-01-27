@@ -54,7 +54,7 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 - Rappels sur defineProps, defineEmits, defineModel
 - Ecoulement des attributs d'un composant sur son template.
 - Slot et named slot
-- Les modificateurs d'événements, prédéfinies et personnalisés
+- Les modificateurs d'événements, prédéfinis et personnalisés
 - provide et inject
 - Ecoulement des attributs d'un composant sur son template
 - Teleports
