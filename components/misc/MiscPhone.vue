@@ -6,8 +6,10 @@ const phone = usePhoneRef("0123456789");
 
 <template>
   <form>
-    <label class="input input-bordered flex items-center gap-2">
-      <PhoneIcon class="size-6 text-gray-400" />
+    <label class="input input-bordered flex w-44 items-center gap-2">
+      <span>
+        <PhoneIcon class="size-6 text-gray-400" />
+      </span>
       <input v-model="phone" type="text" class="grow" placeholder="Téléphone" />
     </label>
   </form>
