@@ -9,7 +9,7 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/vue/24/solid";
       <div class="drawer-content">
         <label
           for="daisyui-drawer"
-          class="btn btn-circle drawer-button absolute z-[9999] m-2 bg-white shadow-md"
+          class="btn btn-circle drawer-button absolute z-[9999] m-2 bg-base-100 shadow-md"
         >
           <ChevronRightIcon class="size-6" />
         </label>
@@ -23,10 +23,10 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/vue/24/solid";
         ></label>
         <div class="flex h-full w-72 flex-col">
           <label for="daisyui-drawer" class="drawer-button flex h-12"> </label>
-          <div class="flex flex-grow flex-col bg-white p-2">
+          <div class="flex flex-grow flex-col bg-base-100 p-2">
             <label
               for="daisyui-drawer"
-              class="btn btn-circle drawer-button bg-white shadow-md"
+              class="btn btn-circle drawer-button bg-base-100 shadow-md"
             >
               <XMarkIcon class="size-6" />
             </label>

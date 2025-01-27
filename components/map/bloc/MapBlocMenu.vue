@@ -18,7 +18,7 @@ const menuStyle = computed(() => {
 
 <template>
   <ul
-    class="menu menu-vertical absolute z-[9999] w-60 rounded-box bg-white"
+    class="menu menu-vertical absolute z-[9999] w-60 rounded-box bg-base-100"
     :style="menuStyle"
   >
     <MapBlocMenuSelected />
