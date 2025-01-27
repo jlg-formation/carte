@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
-import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
+import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
 const email = ref("");
 const password = ref("");
@@ -35,16 +35,13 @@ const handleSubmit = async () => {
         <input v-model="email" type="email" placeholder="E-mail" />
       </label>
       <InputPassword v-model="password" />
-      <button
-        class="btn btn-primary"
+      <ButtonPrimary
+        :isRunning="isConnecting"
         :disabled="isConnecting || !isFormValid"
         @click.prevent="handleSubmit"
       >
-        <span :class="isConnecting && 'loading loading-spinner'">
-          <ArrowRightEndOnRectangleIcon class="size-6" />
-        </span>
-        <span>Se connecter</span>
-      </button>
+        Se connecter
+      </ButtonPrimary>
     </form>
     <NuxtLink to="/new-account" class="link"> Pas encore de compte ? </NuxtLink>
     <span>Password: {{ password }}</span>
