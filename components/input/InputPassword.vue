@@ -1,16 +1,7 @@
 <script setup lang="ts">
 import { KeyIcon } from "@heroicons/vue/24/solid";
 
-const props = defineProps<{ modelValue: string }>();
-const emit = defineEmits<{
-  (e: "update:model-value", modelValue: string): void;
-}>();
-
-const password = ref(props.modelValue);
-
-watch(password, (value) => {
-  emit("update:model-value", value);
-});
+const password = defineModel<string>();
 </script>
 
 <template>
