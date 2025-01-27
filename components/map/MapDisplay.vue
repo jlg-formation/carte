@@ -3,6 +3,10 @@ import type L from "leaflet";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
 
+const LIGHT_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const DARK_URL =
+  "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png";
+
 const { hoverPlace, selectedPlace, gps, isMenuVisible, isAdding } =
   storeToRefs(useMapDisplayStore());
 const mouse = useMouse();
@@ -10,15 +14,7 @@ const mouse = useMouse();
 const theme = inject<Ref<string>>("theme");
 console.log("theme: ", theme);
 
-const url = computed(() => {
-  console.log("theme: ", theme);
-  if (theme === undefined) {
-    return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-  }
-  return theme.value === "dark"
-    ? "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-});
+const url = computed(() => (theme?.value === "dark" ? DARK_URL : LIGHT_URL));
 
 const handleContextMenu = (ev: L.LeafletMouseEvent) => {
   gps.value.latitude = ev.latlng.lat;
