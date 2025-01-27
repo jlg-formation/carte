@@ -53,6 +53,7 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 - Communication entre composants
 - Rappels sur defineProps, defineEmits, defineModel
 - Ecoulement des attributs d'un composant sur son template.
+- Slot et named slot
 - Les modificateurs d'événements, prédéfinies et personnalisés
 - provide et inject
 - Ecoulement des attributs d'un composant sur son template

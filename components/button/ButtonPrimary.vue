@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
-
 defineProps<{
   isRunning: boolean;
 }>();
@@ -9,7 +7,7 @@ defineProps<{
 <template>
   <button class="btn btn-primary">
     <span :class="isRunning && 'loading loading-spinner'">
-      <ArrowRightEndOnRectangleIcon class="size-6" />
+      <slot name="icon" />
     </span>
     <span><slot></slot></span>
   </button>

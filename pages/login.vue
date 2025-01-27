@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
+import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
 const email = ref("");
@@ -40,6 +41,9 @@ const handleSubmit = async () => {
         :disabled="isConnecting || !isFormValid"
         @click.prevent="handleSubmit"
       >
+        <template #icon>
+          <ArrowRightEndOnRectangleIcon class="size-6" />
+        </template>
         Se connecter
       </ButtonPrimary>
     </form>
