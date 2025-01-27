@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import AuthConnection from "./authentication/AuthConnection.vue";
+
+const runtimeConfig = useRuntimeConfig();
+
+const base = runtimeConfig.app.baseURL;
 </script>
 
 <template>
+  <Teleport to="head">
+    <link rel="shortcut icon" :href="base + 'logo.svg'" />
+  </Teleport>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+  />
   <header class="flex h-12 items-center justify-between bg-base-200 pr-2">
     <NuxtLink
       to="/"

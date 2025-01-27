@@ -56,7 +56,6 @@ Refactoring de quelques éléments réactifs du projet fil rouge
 - Slot et named slot
 - Les modificateurs d'événements, prédéfinis et personnalisés
 - provide et inject
-- Ecoulement des attributs d'un composant sur son template
 - Teleports
 - Communication avec une store : Pinia
 - Options Store, Setup Store
