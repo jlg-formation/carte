@@ -24,11 +24,6 @@ const handleSubmit = async () => {
     isConnecting.value = false;
   }
 };
-
-const updatePassword = (str: string) => {
-  console.log("str: ", str);
-  password.value = str;
-};
 </script>
 
 <template>
@@ -39,7 +34,10 @@ const updatePassword = (str: string) => {
         <EnvelopeIcon class="size-6 text-gray-500" />
         <input v-model="email" type="email" placeholder="E-mail" />
       </label>
-      <InputPassword :password="password" @output="updatePassword" />
+      <InputPassword
+        :model-value="password"
+        @update:model-value="($event: string) => (password = $event)"
+      />
       <button
         class="btn btn-primary"
         :disabled="isConnecting || !isFormValid"
@@ -52,5 +50,6 @@ const updatePassword = (str: string) => {
       </button>
     </form>
     <NuxtLink to="/new-account" class="link"> Pas encore de compte ? </NuxtLink>
+    <span>Password: {{ password }}</span>
   </main>
 </template>

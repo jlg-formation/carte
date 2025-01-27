@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { KeyIcon } from "@heroicons/vue/24/solid";
 
-const props = defineProps<{ password: string }>();
+const props = defineProps<{ modelValue: string }>();
 const emit = defineEmits<{
-  (e: "output", password: string): void;
+  (e: "update:modelValue", modelValue: string): void;
 }>();
 
-const password = ref(props.password);
+const password = ref(props.modelValue);
 
 const handlePassword = (event: Event) => {
   password.value = (event.target as HTMLInputElement).value;
-  emit("output", password.value);
+  emit("update:modelValue", password.value);
 };
 </script>
 
