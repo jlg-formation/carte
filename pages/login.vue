@@ -28,26 +28,30 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <main class="page page-center">
-    <h1 class="page-title">Se connecter</h1>
-    <form class="flex w-full max-w-xs flex-col gap-2">
-      <label class="input input-bordered flex items-center gap-2">
-        <EnvelopeIcon class="size-6 text-gray-500" />
-        <input v-model="email" type="email" placeholder="E-mail" />
-      </label>
-      <InputPassword v-model="password" />
-      <ButtonPrimary
-        :isRunning="isConnecting"
-        :disabled="isConnecting || !isFormValid"
-        @click.prevent="handleSubmit"
-      >
-        <template #icon>
-          <ArrowRightEndOnRectangleIcon class="size-6" />
-        </template>
-        Se connecter
-      </ButtonPrimary>
-    </form>
-    <NuxtLink to="/new-account" class="link"> Pas encore de compte ? </NuxtLink>
-    <span>Password: {{ password }}</span>
-  </main>
+  <ClientOnly>
+    <main class="page page-center">
+      <h1 class="page-title">Se connecter</h1>
+      <form class="flex w-full max-w-xs flex-col gap-2">
+        <label class="input input-bordered flex items-center gap-2">
+          <EnvelopeIcon class="size-6 text-gray-500" />
+          <input v-model="email" type="email" placeholder="E-mail" />
+        </label>
+        <InputPassword v-model="password" />
+        <ButtonPrimary
+          :isRunning="isConnecting"
+          :disabled="isConnecting || !isFormValid"
+          @click.prevent="handleSubmit"
+        >
+          <template #icon>
+            <ArrowRightEndOnRectangleIcon class="size-6" />
+          </template>
+          Se connecter
+        </ButtonPrimary>
+      </form>
+      <NuxtLink to="/new-account" class="link">
+        Pas encore de compte ?
+      </NuxtLink>
+      <span>Password: {{ password }}</span>
+    </main>
+  </ClientOnly>
 </template>
