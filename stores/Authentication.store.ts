@@ -54,5 +54,11 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     const router = useRouter();
     router.replace(afterLoginRoute.value);
   };
-  return { user, afterLoginRoute, login, logout, displayName };
+
+  const wait = async () => {
+    const store = useAuthenticationStore();
+    await waitUntilLoaded(store);
+  };
+
+  return { user, afterLoginRoute, displayName, login, logout, wait };
 });

@@ -9,7 +9,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const authenticationStore = useAuthenticationStore();
   // let the time localforage load data
-  await sleep(500);
+  await authenticationStore.wait();
 
   if (authenticationStore.user === undefined) {
     const { afterLoginRoute } = storeToRefs(authenticationStore);
