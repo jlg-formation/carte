@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import { ChevronRightIcon, XMarkIcon } from "@heroicons/vue/24/solid";
+
+useHead({
+  title: "Carte : Editeur",
+  meta: [
+    {
+      name: "description",
+      content: "Editeur de cartes.",
+    },
+  ],
+});
 </script>
 
 <template>

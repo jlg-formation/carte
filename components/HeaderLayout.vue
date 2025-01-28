@@ -21,13 +21,13 @@ const base = runtimeConfig.app.baseURL;
       </svg>
       <span class="font-bold md:text-xl">Cartes</span>
       <ClientOnly>
-        <Teleport to="head">
+        <!-- <Teleport to="head">
           <link
             rel="shortcut icon"
             :href="base + 'logo.svg'"
             type="image/svg+xml"
           />
-        </Teleport>
+        </Teleport> -->
       </ClientOnly>
     </NuxtLink>
     <div>
