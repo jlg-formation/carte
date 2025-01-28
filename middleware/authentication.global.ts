@@ -1,4 +1,4 @@
-const anonymousPageList = ["/login", "/", "/legal"];
+const anonymousPageList = ["/login", "/", "/legal", "/new-account"];
 export default defineNuxtRouteMiddleware(async (to) => {
   if (isSSR()) {
     return;
