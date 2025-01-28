@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AuthConnection from "./authentication/AuthConnection.client.vue";
+import AuthConnection from "./authentication/AuthConnection.vue";
 
 const runtimeConfig = useRuntimeConfig();
 
