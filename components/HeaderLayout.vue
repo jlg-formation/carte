@@ -8,15 +8,6 @@ const base = runtimeConfig.app.baseURL;
 
 <template>
   <header class="flex h-12 items-center justify-between bg-base-200 pr-2">
-    <ClientOnly>
-      <Teleport to="head">
-        <link
-          rel="shortcut icon"
-          :href="base + 'logo.svg'"
-          type="image/svg+xml"
-        />
-      </Teleport>
-    </ClientOnly>
     <NuxtLink
       to="/"
       class="flex items-center gap-2 rounded-lg px-2 hover:bg-base-300"
@@ -29,6 +20,15 @@ const base = runtimeConfig.app.baseURL;
         </g>
       </svg>
       <span class="font-bold md:text-xl">Cartes</span>
+      <ClientOnly>
+        <Teleport to="head">
+          <link
+            rel="shortcut icon"
+            :href="base + 'logo.svg'"
+            type="image/svg+xml"
+          />
+        </Teleport>
+      </ClientOnly>
     </NuxtLink>
     <div>
       <AuthConnection />
