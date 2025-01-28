@@ -1,2 +1,8 @@
 export const sleep = (delay: number) =>
-  new Promise((r) => setTimeout(r, delay));
+  new Promise<void>((resolve) => {
+    if (isSSR()) {
+      resolve();
+      return;
+    }
+    setTimeout(resolve, delay);
+  });
