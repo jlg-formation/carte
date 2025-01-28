@@ -1,8 +1,6 @@
-import type { _ActionsTree, _GettersTree, StateTree, Store } from "pinia";
+import type { PiniaStore } from "~/interfaces/PiniaStore";
 
-export const waitUntilLoaded = async (
-  store: Store<string, StateTree, _GettersTree<StateTree>, _ActionsTree>,
-) => {
+export const waitUntilLoaded = async (store: PiniaStore) => {
   return new Promise<void>((resolve) => {
     if (store._ready) {
       resolve();

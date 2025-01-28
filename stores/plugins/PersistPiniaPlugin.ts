@@ -1,18 +1,10 @@
-import { clone } from "~/utils/clone";
 import localforage from "localforage";
-import type {
-  _ActionsTree,
-  _GettersTree,
-  PiniaPlugin,
-  StateTree,
-  Store,
-} from "pinia";
+import type { PiniaPlugin } from "pinia";
+import type { PiniaStore } from "~/interfaces/PiniaStore";
+import { clone } from "~/utils/clone";
 
-const sendEvent = (
-  store: Store<string, StateTree, _GettersTree<StateTree>, _ActionsTree>,
-) => {
+const sendEvent = (store: PiniaStore) => {
   document.body.dispatchEvent(new Event(store.$id + "_ready"));
-
   store._ready = true;
 };
 
