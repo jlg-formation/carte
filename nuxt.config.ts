@@ -17,4 +17,7 @@ export default defineNuxtConfig({
       baseURL: "/carte/",
     },
   },
+  experimental: {
+    payloadExtraction: false,
+  },
 });
