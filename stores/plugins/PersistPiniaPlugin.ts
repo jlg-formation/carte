@@ -7,6 +7,9 @@ const sendEvent = (storeId: string) => {
 };
 
 export const persistPiniaPlugin: PiniaPlugin = ({ store }) => {
+  if (isSSR()) {
+    return;
+  }
   (async () => {
     const key = `piniaState.${store.$id}`;
 
