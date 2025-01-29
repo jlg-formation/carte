@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { MapIcon } from "@heroicons/vue/24/solid";
-</script>
-
 <template>
   <main class="page page-center">
     <div class="hero">
@@ -12,10 +8,7 @@ import { MapIcon } from "@heroicons/vue/24/solid";
             Produisez des cartes avec des lieux intéressant et partagez les !
           </p>
 
-          <NuxtLink to="/carte" class="btn btn-primary">
-            <MapIcon class="size-6" />
-            <span>Voir les lieux</span>
-          </NuxtLink>
+          <ButtonCallToAction />
         </div>
       </div>
     </div>
