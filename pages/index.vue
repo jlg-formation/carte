@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
+const AsyncButtonCallToAction = defineAsyncComponent(
+  () => import("~/components/button/ButtonCallToAction.vue"),
+);
+
 const show = ref(false);
 
 onMounted(async () => {
@@ -23,7 +27,7 @@ onMounted(async () => {
             class="flex h-10 items-center justify-center transition-opacity duration-[3000ms] ease-in-out"
             :class="show ? 'opacity-100' : 'opacity-0'"
           >
-            <ButtonCallToAction v-if="show" />
+            <AsyncButtonCallToAction v-if="show" />
           </div>
         </div>
       </div>
