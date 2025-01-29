@@ -15,7 +15,13 @@ const AsyncButtonCallToAction = defineAsyncComponent(async () => {
             Produisez des cartes avec des lieux intéressant et partagez les !
           </p>
           <div class="h-10">
-            <Transition mode="out-in">
+            <Transition
+              mode="out-in"
+              enter-from-class="opacity-0"
+              leave-to-class="opacity-0"
+              enter-active-class="transition duration-300"
+              leave-active-class="transition duration-300"
+            >
               <KeepAlive>
                 <Suspense>
                   <AsyncButtonCallToAction />
@@ -31,13 +37,3 @@ const AsyncButtonCallToAction = defineAsyncComponent(async () => {
     </div>
   </main>
 </template>
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>
