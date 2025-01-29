@@ -15,9 +15,10 @@ const isVisible = ref(false);
       placeholder="Password"
       class="flex-grow"
     />
-    <span @click="isVisible = !isVisible">
-      <EyeIcon v-if="isVisible" class="size-6 text-gray-500" />
-      <EyeSlashIcon v-else class="size-6 text-gray-500" />
-    </span>
+    <component
+      :is="isVisible ? EyeIcon : EyeSlashIcon"
+      class="size-6 cursor-pointer text-gray-500"
+      @click="isVisible = !isVisible"
+    />
   </label>
 </template>
