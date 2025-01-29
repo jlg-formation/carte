@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+
+const show = ref(false);
+
+onMounted(async () => {
+  await sleep(1000);
+  show.value = true;
+});
+</script>
+
 <template>
   <main class="page page-center">
     <div class="hero">
@@ -8,7 +19,12 @@
             Produisez des cartes avec des lieux intéressant et partagez les !
           </p>
 
-          <ButtonCallToAction />
+          <div
+            class="flex h-10 items-center justify-center transition-opacity duration-[3000ms] ease-in-out"
+            :class="show ? 'opacity-100' : 'opacity-0'"
+          >
+            <ButtonCallToAction v-if="show" />
+          </div>
         </div>
       </div>
     </div>
