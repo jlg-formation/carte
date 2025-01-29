@@ -1,18 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-
-const AsyncButtonCallToAction = defineAsyncComponent(
-  () => import("~/components/button/ButtonCallToAction.vue"),
-);
-
-const show = ref(false);
-
-onMounted(async () => {
-  await sleep(1000);
-  show.value = true;
+const AsyncButtonCallToAction = defineAsyncComponent(async () => {
+  await sleep(3000);
+  const result = await import("~/components/button/ButtonCallToAction.vue");
+  return result;
 });
 </script>
-
 <template>
   <main class="page page-center">
     <div class="hero">
@@ -22,15 +14,30 @@ onMounted(async () => {
           <p class="py-6">
             Produisez des cartes avec des lieux intéressant et partagez les !
           </p>
-
-          <div
-            class="flex h-10 items-center justify-center transition-opacity duration-[3000ms] ease-in-out"
-            :class="show ? 'opacity-100' : 'opacity-0'"
-          >
-            <AsyncButtonCallToAction v-if="show" />
+          <div class="h-10">
+            <Transition mode="out-in">
+              <KeepAlive>
+                <Suspense>
+                  <AsyncButtonCallToAction />
+                  <template #fallback>
+                    <span>Loading...</span>
+                  </template>
+                </Suspense>
+              </KeepAlive>
+            </Transition>
           </div>
         </div>
       </div>
     </div>
   </main>
 </template>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
