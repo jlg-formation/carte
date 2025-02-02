@@ -51,7 +51,6 @@ const handleSubmit = async () => {
       <NuxtLink to="/new-account" class="link">
         Pas encore de compte ?
       </NuxtLink>
-      <span>Password: {{ password }}</span>
     </main>
   </ClientOnly>
 </template>
