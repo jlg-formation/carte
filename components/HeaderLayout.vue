@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import AuthConnection from "./authentication/AuthConnection.vue";
 
-const runtimeConfig = useRuntimeConfig();
-
-const base = runtimeConfig.app.baseURL;
+// const base = useRuntimeConfig().app.baseURL;
 </script>
 
 <template>
