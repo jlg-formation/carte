@@ -1,16 +1,14 @@
 import { defineStore } from "pinia";
-import type { User } from "~/interfaces/User";
+import type { AuthenticatedUser } from "~/interfaces/User";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
-  const user = ref<User | undefined>(undefined);
+  const user = ref<AuthenticatedUser | undefined>(undefined);
   const afterLoginRoute = ref("/");
 
   const displayName = computed({
     // getter
     get() {
-      if (user.value === undefined) {
-        return;
-      }
+      if (user.value === undefined) return;
       return user.value.firstname + " " + user.value.lastname;
     },
     // setter
@@ -31,20 +29,20 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     await sleep(300);
     console.log("email: ", email);
     console.log("password: ", password);
-    if (email !== "jlguenego@gmail.com") {
-      throw new Error("Invalid email");
+    const userStore = useUserStore();
+    const u = userStore.users.find((u) => u.email === email);
+    if (
+      u === undefined ||
+      u.passwordDigest !== (await hashPassword({ email, password }))
+    ) {
+      throw new Error("Invalid email/password");
     }
     user.value = {
-      firstname: "x",
-      lastname: "y",
-      email,
+      firstname: u.firstname,
+      lastname: u.lastname,
+      email: u.email,
     };
-
-    displayName.value = "Jean-Louis GUENEGO";
-
-    const router = useRouter();
-    router.replace(afterLoginRoute.value);
-    console.log("user.value: ", user.value);
+    useRouter().replace(afterLoginRoute.value);
   };
 
   const logout = async () => {
