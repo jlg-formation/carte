@@ -80,7 +80,6 @@ Suspense et un composant d'affichage asynchrone.
 
 ### Traitement de formulaire
 
-- Ecriture d'un composant input personnalisé.
 - Validation synchrone et asynchrone
 - Notion de dirty et untouched
 - Écriture d'un composant input personnalisé
@@ -108,7 +107,6 @@ l'authentification.
 - rendu de listes volumineuses
 - conversion de variable reactive constante en variable non reactive.
 - v-for avec key
-- recalcul excessif de computed
 - Conversion de variable réactive constante en variable non réactive
 - reactivité profonde avec des objets complexes
 - Recalcul excessif de computed
