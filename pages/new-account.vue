@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EnvelopeIcon } from "@heroicons/vue/24/outline";
+import { EnvelopeIcon, IdentificationIcon } from "@heroicons/vue/24/outline";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
@@ -35,11 +35,11 @@ const confirmNewPassword = ref("");
         autocomplete="new-password"
       />
       <label class="input input-bordered flex items-center gap-2">
-        <EnvelopeIcon class="size-6 text-gray-500" />
+        <IdentificationIcon class="size-6 text-gray-500" />
         <input v-model="firstname" type="text" placeholder="Prénom" />
       </label>
       <label class="input input-bordered flex items-center gap-2">
-        <EnvelopeIcon class="size-6 text-gray-500" />
+        <IdentificationIcon class="size-6 text-gray-500" />
         <input v-model="lastname" type="text" placeholder="Nom" />
       </label>
       <ButtonPrimary
