@@ -11,7 +11,7 @@ export default function useNewAccount() {
 
   const isFormValid = computed(() => {
     return (
-      email.value !== "" &&
+      isEmailValid(email.value) &&
       newPassword.value !== "" &&
       lastname.value !== "" &&
       firstname.value !== ""

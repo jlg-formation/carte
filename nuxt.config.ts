@@ -20,4 +20,8 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
+  imports: {
+    // Auto-import pinia stores defined in `~/stores`
+    dirs: ["utils/validation"],
+  },
 });
