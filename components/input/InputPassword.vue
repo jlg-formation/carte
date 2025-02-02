@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { EyeIcon, EyeSlashIcon, KeyIcon } from "@heroicons/vue/24/solid";
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const password = defineModel<string>();
 
 const isVisible = ref(false);
@@ -12,7 +16,7 @@ const isVisible = ref(false);
     <input
       v-model="password"
       :type="isVisible ? 'text' : 'password'"
-      placeholder="Password"
+      v-bind="$attrs"
       class="flex-grow"
     />
     <component

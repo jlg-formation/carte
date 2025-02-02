@@ -36,7 +36,7 @@ const handleSubmit = async () => {
           <EnvelopeIcon class="size-6 text-gray-500" />
           <input v-model="email" type="email" placeholder="E-mail" />
         </label>
-        <InputPassword v-model="password" />
+        <InputPassword v-model="password" placeholder="Mot de passe" />
         <ButtonPrimary
           :isRunning="isConnecting"
           :disabled="isConnecting || !isFormValid"
