@@ -4,7 +4,7 @@ import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import { Field } from "vee-validate";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
-const { meta, isSubmitting, onSubmit, errors, isFieldTouched } =
+const { meta, isSubmitting, onSubmit, errors, isFieldTouched, errorMsg } =
   useNewAccount();
 </script>
 
@@ -60,6 +60,9 @@ const { meta, isSubmitting, onSubmit, errors, isFieldTouched } =
           errors.lastname
         }}</span>
       </label>
+      <div class="flex h-8 items-center justify-center text-error">
+        {{ errorMsg }}
+      </div>
       <ButtonPrimary
         :isRunning="isSubmitting"
         :disabled="isSubmitting || !meta.valid"

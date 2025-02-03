@@ -1,5 +1,5 @@
 import { useForm } from "vee-validate";
-import { object, string, ref } from "yup";
+import { object, string, ref as yupref } from "yup";
 
 interface NewAccountForm {
   email: string;
@@ -10,11 +10,15 @@ interface NewAccountForm {
 }
 
 export default function useNewAccount() {
+  const errorMsg = ref("");
   const schema = object({
     email: string().required().email(),
     newPassword: string().required(),
     confirmNewPassword: string()
-      .oneOf([ref("newPassword")], "Les deux mots de passe ne sont pas égaux.")
+      .oneOf(
+        [yupref("newPassword")],
+        "Les deux mots de passe ne sont pas égaux.",
+      )
       .required(),
     lastname: string().required(),
     firstname: string().required(),
@@ -29,6 +33,8 @@ export default function useNewAccount() {
       try {
         console.log("submit", email, newPassword, lastname, firstname);
 
+        errorMsg.value = "";
+
         const userStore = useUserStore();
         await userStore.wait();
         await userStore.create({
@@ -40,6 +46,7 @@ export default function useNewAccount() {
         await useRouter().push("/account-created");
       } catch (err) {
         console.log("err: ", err);
+        errorMsg.value = "Email déjà pris.";
       }
     },
   );
@@ -50,5 +57,6 @@ export default function useNewAccount() {
     isSubmitting,
     onSubmit,
     isFieldTouched,
+    errorMsg,
   };
 }

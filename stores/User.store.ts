@@ -6,6 +6,12 @@ export const useUserStore = defineStore("user", () => {
 
   const create = async (user: NewUser) => {
     await sleep(300);
+    const isExistingEmail = users.value.find((u) =>
+      user.email.startsWith(u.email),
+    );
+    if (isExistingEmail) {
+      throw new Error("existing email.");
+    }
     users.value.push({
       email: user.email,
       firstname: user.firstname,
