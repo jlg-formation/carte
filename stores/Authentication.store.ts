@@ -30,6 +30,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     console.log("email: ", email);
     console.log("password: ", password);
     const userStore = useUserStore();
+    await userStore.wait();
     const u = userStore.users.find((u) => u.email === email);
     if (
       u === undefined ||
