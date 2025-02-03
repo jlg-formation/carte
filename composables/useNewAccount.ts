@@ -1,49 +1,50 @@
-import type { SubmissionHandler } from "vee-validate";
+import { useForm } from "vee-validate";
+import { object, string } from "yup";
 
 interface NewAccountForm {
   email: string;
   newPassword: string;
+  confirmNewPassword: string;
   lastname: string;
   firstname: string;
 }
 
 export default function useNewAccount() {
-  const userStore = useUserStore();
-  const router = useRouter();
-
-  const isCreating = ref(false);
-
-  const isFormValid = computed(() => {
-    return true;
+  const schema = object({
+    email: string().required().email(),
+    newPassword: string().required(),
+    confirmNewPassword: string().required(),
+    lastname: string().required(),
+    firstname: string().required(),
+  });
+  const { isSubmitting, errors, meta, handleSubmit } = useForm<NewAccountForm>({
+    validationSchema: schema,
   });
 
-  const handleSubmit = (async ({
-    email,
-    firstname,
-    lastname,
-    newPassword,
-  }: NewAccountForm) => {
-    try {
-      console.log("submit", email, newPassword, lastname, firstname);
-      isCreating.value = true;
+  const onSubmit = handleSubmit(
+    async ({ email, firstname, lastname, newPassword }: NewAccountForm) => {
+      try {
+        console.log("submit", email, newPassword, lastname, firstname);
 
-      await userStore.create({
-        email,
-        password: newPassword,
-        lastname,
-        firstname,
-      });
-      await router.push("/account-created");
-    } catch (err) {
-      console.log("err: ", err);
-    } finally {
-      isCreating.value = false;
-    }
-  }) as unknown as SubmissionHandler;
+        const userStore = useUserStore();
+        await userStore.wait();
+        await userStore.create({
+          email,
+          password: newPassword,
+          lastname,
+          firstname,
+        });
+        await useRouter().push("/account-created");
+      } catch (err) {
+        console.log("err: ", err);
+      }
+    },
+  );
 
   return {
-    isFormValid,
-    isCreating,
-    handleSubmit,
+    errors,
+    meta,
+    isSubmitting,
+    onSubmit,
   };
 }
