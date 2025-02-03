@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, Field, type SubmissionHandler } from "vee-validate";
+import { Field, useForm } from "vee-validate";
 
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
@@ -18,7 +18,9 @@ const authenticationStore = useAuthenticationStore();
 
 const isConnecting = ref(false);
 
-const handleSubmit = (async ({ email, password }: LoginForm) => {
+const { handleSubmit } = useForm<LoginForm>();
+
+const onSubmit = handleSubmit(async ({ email, password }) => {
   try {
     console.log("submit");
     isConnecting.value = true;
@@ -28,14 +30,14 @@ const handleSubmit = (async ({ email, password }: LoginForm) => {
   } finally {
     isConnecting.value = false;
   }
-}) as unknown as SubmissionHandler;
+});
 </script>
 
 <template>
   <ClientOnly>
     <main class="page page-center">
       <h1 class="page-title">Se connecter</h1>
-      <Form class="flex w-full max-w-xs flex-col gap-2" @submit="handleSubmit">
+      <form class="flex w-full max-w-xs flex-col gap-2" @submit="onSubmit">
         <label class="input input-bordered flex items-center gap-2">
           <EnvelopeIcon class="size-6 text-gray-500" />
           <Field name="email" type="email" placeholder="E-mail" />
@@ -50,7 +52,7 @@ const handleSubmit = (async ({ email, password }: LoginForm) => {
           </template>
           Se connecter
         </ButtonPrimary>
-      </Form>
+      </form>
       <NuxtLink to="/new-account" class="link">
         Pas encore de compte ?
       </NuxtLink>
