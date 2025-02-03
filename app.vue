@@ -1,9 +1,6 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
-
 const base = runtimeConfig.app.baseURL;
-
-yupInit();
 
 useHead({
   title: "Carte : Mes endroits préférés",

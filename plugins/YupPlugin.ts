@@ -1,6 +1,7 @@
 import { setLocale } from "yup";
 
-export default function yupInit() {
+export default defineNuxtPlugin(() => {
+  console.log("yup init");
   setLocale({
     mixed: {
       default: "Champ non valide.",
@@ -10,4 +11,4 @@ export default function yupInit() {
       email: "Email non valide.",
     },
   });
-}
+});
