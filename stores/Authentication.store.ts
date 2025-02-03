@@ -43,7 +43,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
       lastname: u.lastname,
       email: u.email,
     };
-    useRouter().replace(afterLoginRoute.value);
+    await useRouter().replace(afterLoginRoute.value);
   };
 
   const logout = async () => {

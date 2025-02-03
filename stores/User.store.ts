@@ -15,7 +15,7 @@ export const useUserStore = defineStore("user", () => {
 
     const authenticationStore = useAuthenticationStore();
     authenticationStore.afterLoginRoute = "/account-created";
-    authenticationStore.login(user.email, user.password);
+    await authenticationStore.login(user.email, user.password);
   };
 
   const wait = async () => {
