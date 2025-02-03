@@ -1,32 +1,37 @@
+import type { SubmissionHandler } from "vee-validate";
+
+interface NewAccountForm {
+  email: string;
+  newPassword: string;
+  lastname: string;
+  firstname: string;
+}
+
 export default function useNewAccount() {
   const userStore = useUserStore();
   const router = useRouter();
 
-  const email = ref("");
-  const newPassword = ref("");
-  const lastname = ref("");
-  const firstname = ref("");
-
   const isCreating = ref(false);
 
   const isFormValid = computed(() => {
-    return (
-      isEmailValid(email.value) &&
-      newPassword.value !== "" &&
-      lastname.value !== "" &&
-      firstname.value !== ""
-    );
+    return true;
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = (async ({
+    email,
+    firstname,
+    lastname,
+    newPassword,
+  }: NewAccountForm) => {
     try {
-      console.log("submit");
+      console.log("submit", email, newPassword, lastname, firstname);
       isCreating.value = true;
+
       await userStore.create({
-        email: email.value,
-        password: newPassword.value,
-        lastname: lastname.value,
-        firstname: firstname.value,
+        email,
+        password: newPassword,
+        lastname,
+        firstname,
       });
       await router.push("/account-created");
     } catch (err) {
@@ -34,12 +39,9 @@ export default function useNewAccount() {
     } finally {
       isCreating.value = false;
     }
-  };
+  }) as unknown as SubmissionHandler;
+
   return {
-    email,
-    newPassword,
-    lastname,
-    firstname,
     isFormValid,
     isCreating,
     handleSubmit,
