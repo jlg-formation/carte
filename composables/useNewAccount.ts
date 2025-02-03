@@ -1,5 +1,5 @@
 import { useForm } from "vee-validate";
-import { object, string } from "yup";
+import { object, string, ref } from "yup";
 
 interface NewAccountForm {
   email: string;
@@ -13,7 +13,9 @@ export default function useNewAccount() {
   const schema = object({
     email: string().required().email(),
     newPassword: string().required(),
-    confirmNewPassword: string().required(),
+    confirmNewPassword: string()
+      .oneOf([ref("newPassword")], "Les deux mots de passe ne sont pas égaux.")
+      .required(),
     lastname: string().required(),
     firstname: string().required(),
   });
