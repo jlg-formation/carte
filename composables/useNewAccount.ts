@@ -19,9 +19,10 @@ export default function useNewAccount() {
     lastname: string().required(),
     firstname: string().required(),
   });
-  const { isSubmitting, errors, meta, handleSubmit } = useForm<NewAccountForm>({
-    validationSchema: schema,
-  });
+  const { isSubmitting, errors, meta, handleSubmit, isFieldTouched } =
+    useForm<NewAccountForm>({
+      validationSchema: schema,
+    });
 
   const onSubmit = handleSubmit(
     async ({ email, firstname, lastname, newPassword }: NewAccountForm) => {
@@ -48,5 +49,6 @@ export default function useNewAccount() {
     meta,
     isSubmitting,
     onSubmit,
+    isFieldTouched,
   };
 }

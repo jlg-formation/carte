@@ -4,7 +4,8 @@ import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import { Field } from "vee-validate";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
-const { meta, isSubmitting, onSubmit, errors } = useNewAccount();
+const { meta, isSubmitting, onSubmit, errors, isFieldTouched } =
+  useNewAccount();
 </script>
 
 <template>
@@ -35,9 +36,11 @@ const { meta, isSubmitting, onSubmit, errors } = useNewAccount();
           placeholder="Confirmer le mot de passe"
           autocomplete="new-password"
         />
-        <span class="flex h-8 items-start text-error">{{
-          errors.confirmNewPassword
-        }}</span>
+        <span class="flex h-8 items-start text-error">
+          <span v-show="isFieldTouched('confirmNewPassword')">
+            {{ errors.confirmNewPassword }}
+          </span>
+        </span>
       </label>
       <label class="flex flex-col">
         <div class="input input-bordered flex items-center gap-2">

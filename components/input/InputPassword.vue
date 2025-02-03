@@ -10,7 +10,7 @@ defineOptions({
 
 const isVisible = ref(false);
 
-const { value, errorMessage } = useField(() => props.name);
+const { value, errorMessage, handleBlur } = useField(() => props.name);
 console.log("errorMessage: ", errorMessage);
 </script>
 
@@ -22,6 +22,7 @@ console.log("errorMessage: ", errorMessage);
       :type="isVisible ? 'text' : 'password'"
       v-bind="$attrs"
       class="flex-grow"
+      @blur="handleBlur"
     />
     <component
       :is="isVisible ? EyeIcon : EyeSlashIcon"
