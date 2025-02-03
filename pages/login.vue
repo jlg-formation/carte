@@ -1,40 +1,10 @@
 <script setup lang="ts">
-import { useForm } from "vee-validate";
-import { object, string } from "yup";
-
 import { EnvelopeIcon } from "@heroicons/vue/24/outline";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
-interface LoginForm {
-  email: string;
-  password: string;
-}
-
-const schema = object({
-  email: string().required().email(),
-  password: string().required(),
-});
-
-const authenticationStore = useAuthenticationStore();
-const isConnecting = ref(false);
-
-const { handleSubmit, errors, defineField, meta } = useForm<LoginForm>({
-  validationSchema: schema,
-});
-const [email, emailAttrs] = defineField("email");
-
-const onSubmit = handleSubmit(async ({ email, password }) => {
-  try {
-    console.log("submit");
-    isConnecting.value = true;
-    await authenticationStore.login(email, password);
-  } catch (err) {
-    console.log("err: ", err);
-  } finally {
-    isConnecting.value = false;
-  }
-});
+const { onSubmit, errors, meta, email, emailAttrs, isConnecting } =
+  useLoginPage();
 </script>
 
 <template>
