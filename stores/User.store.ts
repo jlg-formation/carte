@@ -18,5 +18,10 @@ export const useUserStore = defineStore("user", () => {
     authenticationStore.login(user.email, user.password);
   };
 
-  return { users, create };
+  const wait = async () => {
+    const store = useUserStore();
+    await waitUntilLoaded(store);
+  };
+
+  return { users, create, wait };
 });
