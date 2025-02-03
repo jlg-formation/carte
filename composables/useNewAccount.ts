@@ -12,7 +12,18 @@ interface NewAccountForm {
 export default function useNewAccount() {
   const errorMsg = ref("");
   const schema = object({
-    email: string().required().email(),
+    email: string()
+      .required()
+      .email()
+      .test("mail-already-taken", "Mail déjà pris", async (value) => {
+        const userStore = useUserStore();
+        await userStore.wait();
+        await sleep(1000);
+        const isExistingEmail = userStore.users.find((u) =>
+          value.startsWith(u.email),
+        );
+        return !isExistingEmail;
+      }),
     newPassword: string().required(),
     confirmNewPassword: string()
       .oneOf(
