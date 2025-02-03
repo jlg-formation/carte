@@ -1,5 +1,6 @@
 import { useForm } from "vee-validate";
 import { object, string, ref as yupref } from "yup";
+import type { NewAccountForm } from "~/interfaces/NewAccountForm";
 
 export default function useNewAccount() {
   const errorMsg = ref("");
@@ -26,9 +27,8 @@ export default function useNewAccount() {
     lastname: string().required(),
     firstname: string().required(),
   });
-  const { isSubmitting, errors, meta, handleSubmit, isFieldTouched } = useForm({
-    validationSchema: schema,
-  });
+  const { isSubmitting, errors, meta, handleSubmit, isFieldTouched } =
+    useForm<NewAccountForm>({ validationSchema: schema });
 
   const onSubmit = handleSubmit(
     async ({ email, firstname, lastname, newPassword }) => {
