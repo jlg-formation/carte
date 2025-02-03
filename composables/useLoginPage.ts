@@ -14,24 +14,21 @@ export default function useLoginPage() {
   });
 
   const authenticationStore = useAuthenticationStore();
-  const isConnecting = ref(false);
 
-  const { handleSubmit, errors, defineField, meta } = useForm<LoginForm>({
-    validationSchema: schema,
-  });
+  const { handleSubmit, errors, defineField, meta, isSubmitting } =
+    useForm<LoginForm>({
+      validationSchema: schema,
+    });
   const [email, emailAttrs] = defineField("email");
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     try {
       errorMsg.value = "";
       console.log("submit");
-      isConnecting.value = true;
       await authenticationStore.login(email, password);
     } catch (err) {
       console.log("err: ", err);
       errorMsg.value = "Login / Mot de passe invalide.";
-    } finally {
-      isConnecting.value = false;
     }
   });
 
@@ -41,7 +38,7 @@ export default function useLoginPage() {
     meta,
     email,
     emailAttrs,
-    isConnecting,
+    isSubmitting,
     errorMsg,
   };
 }

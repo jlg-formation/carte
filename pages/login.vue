@@ -3,7 +3,7 @@ import { EnvelopeIcon } from "@heroicons/vue/24/outline";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/vue/24/solid";
 import ButtonPrimary from "~/components/button/ButtonPrimary.vue";
 
-const { onSubmit, errors, meta, email, emailAttrs, isConnecting, errorMsg } =
+const { onSubmit, errors, meta, email, emailAttrs, isSubmitting, errorMsg } =
   useLoginPage();
 </script>
 
@@ -37,8 +37,8 @@ const { onSubmit, errors, meta, email, emailAttrs, isConnecting, errorMsg } =
           {{ errorMsg }}
         </div>
         <ButtonPrimary
-          :isRunning="isConnecting"
-          :disabled="isConnecting || !meta.valid"
+          :isRunning="isSubmitting"
+          :disabled="isSubmitting || !meta.valid"
         >
           <template #icon>
             <ArrowRightEndOnRectangleIcon class="size-6" />
