@@ -3,6 +3,8 @@ const runtimeConfig = useRuntimeConfig();
 
 const base = runtimeConfig.app.baseURL;
 
+yupInit();
+
 useHead({
   title: "Carte : Mes endroits préférés",
   meta: [
