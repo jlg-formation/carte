@@ -15,7 +15,7 @@ console.log("errorMessage: ", errorMessage);
 </script>
 
 <template>
-  <label class="input input-bordered flex items-center justify-between gap-2">
+  <div class="input input-bordered flex items-center justify-between gap-2">
     <KeyIcon class="size-6 text-gray-500" />
     <input
       v-model="value"
@@ -28,5 +28,5 @@ console.log("errorMessage: ", errorMessage);
       class="size-6 cursor-pointer text-gray-500"
       @click="isVisible = !isVisible"
     />
-  </label>
+  </div>
 </template>

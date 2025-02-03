@@ -7,6 +7,7 @@ interface LoginForm {
 }
 
 export default function useLoginPage() {
+  const errorMsg = ref("");
   const schema = object({
     email: string().required().email(),
     password: string().required(),
@@ -22,11 +23,13 @@ export default function useLoginPage() {
 
   const onSubmit = handleSubmit(async ({ email, password }) => {
     try {
+      errorMsg.value = "";
       console.log("submit");
       isConnecting.value = true;
       await authenticationStore.login(email, password);
     } catch (err) {
       console.log("err: ", err);
+      errorMsg.value = "Login / Mot de passe invalide.";
     } finally {
       isConnecting.value = false;
     }
@@ -39,5 +42,6 @@ export default function useLoginPage() {
     email,
     emailAttrs,
     isConnecting,
+    errorMsg,
   };
 }
