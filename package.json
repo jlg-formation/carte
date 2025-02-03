@@ -23,7 +23,8 @@
     "pinia": "^2.3.0",
     "vee-validate": "^4.15.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/eslint-config-prettier": "^6.11.3",
