@@ -27,6 +27,14 @@ const getIconUrl = (place: Place) => {
       ? selectedMarker
       : marker;
 };
+
+const handleClick = () => {
+  console.log("handle click");
+  if (hoverPlace.value === undefined) {
+    return;
+  }
+  selectedPlaceId.value = hoverPlace.value.id;
+};
 </script>
 
 <template>
@@ -36,6 +44,7 @@ const getIconUrl = (place: Place) => {
     :lat-lng="[place.gps.latitude, place.gps.longitude]"
     @mouseover="handleMarkerMouseover(place)"
     @mouseout="handleMarkerMouseout()"
+    @click="handleClick"
   >
     <LIcon
       :icon-url="getIconUrl(place)"

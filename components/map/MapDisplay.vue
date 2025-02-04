@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type L from "leaflet";
+import type { PointExpression } from "leaflet";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 import MapBlocMarkers from "./bloc/MapBlocMarkers.vue";
-import type { PointExpression } from "leaflet";
 
 const LIGHT_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const DARK_URL =
