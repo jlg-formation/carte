@@ -32,19 +32,17 @@ useHead({
             aria-label="close sidebar"
             class="drawer-overlay"
           ></label>
-          <div class="flex h-full w-72 flex-col">
-            <label for="daisyui-drawer" class="drawer-button flex h-12">
-            </label>
-            <div class="flex flex-grow flex-col bg-base-100 p-2">
+          <div class="flex h-screen max-h-screen w-72 flex-col py-12">
+            <label for="daisyui-drawer" class="drawer-button flex h-0"> </label>
+            <div class="flex min-h-0 flex-grow flex-col bg-base-100 p-2">
               <label
                 for="daisyui-drawer"
                 class="btn btn-circle drawer-button bg-base-100 shadow-md"
               >
                 <XMarkIcon class="size-6" />
               </label>
-              <div class="flex-grow">
-                <MapManager />
-              </div>
+
+              <MapManager />
             </div>
           </div>
         </div>
