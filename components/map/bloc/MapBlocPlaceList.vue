@@ -7,15 +7,24 @@ const { places } = storeToRefs(placeStore);
 const removePlace = async (id: string) => {
   await placeStore.remove([id]);
 };
+
+const selectPlace = (id: string) => {
+  placeStore.select(id);
+};
 </script>
 
 <template>
   <div
     v-for="place in places"
     :key="place.id"
-    class="group flex items-center justify-between rounded-lg border p-2 hover:bg-base-200 active:bg-base-300"
+    class="group flex items-center justify-between rounded-lg border p-2 active:bg-base-300"
+    :class="
+      place.id === placeStore.selectedPlaceId
+        ? 'bg-base-300 hover:bg-base-300'
+        : 'hover:bg-base-200'
+    "
   >
-    <div class="flex flex-col">
+    <div class="flex cursor-pointer flex-col" @click="selectPlace(place.id)">
       <div class="font-bold">{{ place.name }}</div>
       <div>
         {{

@@ -3,6 +3,15 @@ import type { NewPlace, Place } from "~/interfaces/Place";
 
 export const usePlaceStore = defineStore("place", () => {
   const places = ref<Place[]>([]);
+  const selectedPlaceId = ref<string | undefined>(undefined);
+
+  const select = (id: string) => {
+    if (selectedPlaceId.value === id) {
+      selectedPlaceId.value = undefined;
+      return;
+    }
+    selectedPlaceId.value = id;
+  };
 
   const add = async (place: NewPlace) => {
     await sleep(10);
@@ -34,5 +43,14 @@ export const usePlaceStore = defineStore("place", () => {
     places.value = await importPlaces();
   };
 
-  return { places, add, remove, update, exportJson, importJson };
+  return {
+    places,
+    add,
+    remove,
+    update,
+    exportJson,
+    importJson,
+    select,
+    selectedPlaceId,
+  };
 });
