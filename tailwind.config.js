@@ -1,5 +1,6 @@
 import daisyui from "daisyui";
 import plugin from "tailwindcss/plugin";
+import scrollbarHide from "tailwind-scrollbar-hide";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,6 +16,7 @@ export default {
     extend: {},
   },
   plugins: [
+    scrollbarHide,
     daisyui,
     plugin(({ addComponents }) => {
       addComponents({
