@@ -24,7 +24,10 @@ const selectPlace = (id: string) => {
         : 'hover:bg-base-200'
     "
   >
-    <div class="flex cursor-pointer flex-col" @click="selectPlace(place.id)">
+    <div
+      class="flex flex-grow cursor-pointer flex-col"
+      @click="selectPlace(place.id)"
+    >
       <div class="font-bold">{{ place.name }}</div>
       <div>
         {{
@@ -33,7 +36,7 @@ const selectPlace = (id: string) => {
       </div>
     </div>
     <div
-      class="invisible cursor-pointer p-2 text-gray-500 hover:text-neutral group-hover:visible"
+      class="invisible cursor-pointer rounded-full border border-gray-500 p-2 text-gray-500 hover:border-base-content hover:text-base-content group-hover:visible"
       @click="removePlace(place.id)"
     >
       <TrashIcon class="size-6" />
