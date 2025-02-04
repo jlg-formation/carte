@@ -6,10 +6,11 @@ const runtimeConfig = useRuntimeConfig();
 
 const base = runtimeConfig.app.baseURL;
 const marker = base + "marker-icon-2x-blue.png";
-const selectedMarker = base + "marker-icon-2x-green.png";
+const selectedMarker = base + "marker-icon-2x-red.png";
+const hoverMarker = base + "marker-icon-2x-green.png";
 const shadowMarker = base + "marker-shadow.png";
 
-const { places } = storeToRefs(usePlaceStore());
+const { places, selectedPlaceId } = storeToRefs(usePlaceStore());
 const { hoverPlace } = storeToRefs(useMapDisplayStore());
 
 const handleMarkerMouseover = (place: Place) => {
@@ -17,6 +18,14 @@ const handleMarkerMouseover = (place: Place) => {
 };
 const handleMarkerMouseout = () => {
   hoverPlace.value = undefined;
+};
+
+const getIconUrl = (place: Place) => {
+  return hoverPlace.value === place
+    ? hoverMarker
+    : place.id === selectedPlaceId.value
+      ? selectedMarker
+      : marker;
 };
 </script>
 
@@ -29,7 +38,7 @@ const handleMarkerMouseout = () => {
     @mouseout="handleMarkerMouseout()"
   >
     <LIcon
-      :icon-url="hoverPlace === place ? selectedMarker : marker"
+      :icon-url="getIconUrl(place)"
       :shadow-url="shadowMarker"
       :icon-size="[25, 41]"
       :icon-anchor="[16, 37]"
