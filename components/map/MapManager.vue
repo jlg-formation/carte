@@ -3,7 +3,8 @@
     <MapBlocButtons />
 
     <div
-      class="scrollbar-hide flex h-full min-h-0 flex-grow flex-col gap-2 overflow-y-auto"
+      id="map-manager-list"
+      class="flex h-full min-h-0 flex-grow flex-col gap-2 overflow-y-auto scrollbar-hide"
     >
       <MapBlocPlaceList />
     </div>

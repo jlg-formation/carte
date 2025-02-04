@@ -20,6 +20,7 @@ const selectPlace = (id: string) => {
 <template>
   <div
     v-for="place in places"
+    :id="place.id"
     :key="place.id"
     class="group flex items-center justify-between rounded-lg border p-2 active:bg-base-300"
     :class="
