@@ -3,11 +3,11 @@ import type { Place } from "~/interfaces/Place";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
 const runtimeConfig = useRuntimeConfig();
-
 const base = runtimeConfig.app.baseURL;
 const marker = base + "marker-icon-2x-blue.png";
 const selectedMarker = base + "marker-icon-2x-red.png";
 const hoverMarker = base + "marker-icon-2x-green.png";
+const hoverSelectedMarker = base + "marker-icon-2x-gold.png";
 const shadowMarker = base + "marker-shadow.png";
 
 const { places, selectedPlaceId } = storeToRefs(usePlaceStore());
@@ -22,7 +22,9 @@ const handleMarkerMouseout = () => {
 
 const getIconUrl = (place: Place) => {
   return hoverPlace.value === place
-    ? hoverMarker
+    ? place.id === selectedPlaceId.value
+      ? hoverSelectedMarker
+      : hoverMarker
     : place.id === selectedPlaceId.value
       ? selectedMarker
       : marker;
@@ -30,7 +32,9 @@ const getIconUrl = (place: Place) => {
 
 const handleClick = () => {
   console.log("handle click");
-  if (hoverPlace.value === undefined) {
+  if (hoverPlace.value === undefined) return;
+  if (selectedPlaceId.value === hoverPlace.value.id) {
+    selectedPlaceId.value = undefined;
     return;
   }
   selectedPlaceId.value = hoverPlace.value.id;
