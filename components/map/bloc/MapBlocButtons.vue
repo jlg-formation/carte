@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { ArrowDownTrayIcon, ArrowUpTrayIcon } from "@heroicons/vue/24/solid";
+import {
+  ArrowDownTrayIcon,
+  ArrowsUpDownIcon,
+  ArrowUpTrayIcon,
+} from "@heroicons/vue/24/solid";
 
 const placeStore = usePlaceStore();
 
@@ -27,10 +31,10 @@ const scrollToSelectedPlace = () => {
     </button>
     <button
       class="btn btn-sm"
-      title="Scroll to selected place"
+      title="Scroll à la place sélectionnée"
       @click="scrollToSelectedPlace"
     >
-      <ArrowUpTrayIcon class="size-6" />
+      <ArrowsUpDownIcon class="size-6" />
     </button>
   </nav>
 </template>
