@@ -105,7 +105,6 @@ l'authentification.
 
 - throttle et debounce
 - rendu de listes volumineuses
-- conversion de variable reactive constante en variable non reactive.
 - v-for avec key
 - Conversion de variable réactive constante en variable non réactive
 - reactivité profonde avec des objets complexes
@@ -117,7 +116,8 @@ Reprendre le formulaire et intégrer le debounce pour une validation asynchrone.
 
 ### Outils
 
-- WebSocket
+- Debug et analyse : Vue Devtools
+- Test : Cypress, etc.
 - ESLint, Prettier, et outils de linting spécifiques à Vue
 - TailwindCSS
 - Intégration avec d'autres librairies (ex: D3, Leaflet)
