@@ -4,6 +4,11 @@ import type { NewPlace, Place } from "~/interfaces/Place";
 export const usePlaceStore = defineStore("place", () => {
   const places = ref<Place[]>([]);
   const selectedPlaceId = ref<string | undefined>(undefined);
+  const panToSelectedPlaceLastDate = ref(new Date());
+
+  const selectedPlace = computed(() => {
+    return places.value.find((p) => p.id === selectedPlaceId.value);
+  });
 
   const select = (id: string) => {
     if (selectedPlaceId.value === id) {
@@ -52,5 +57,7 @@ export const usePlaceStore = defineStore("place", () => {
     importJson,
     select,
     selectedPlaceId,
+    panToSelectedPlaceLastDate,
+    selectedPlace,
   };
 });

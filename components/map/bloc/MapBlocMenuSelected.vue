@@ -7,15 +7,15 @@ import {
 } from "@heroicons/vue/24/solid";
 import { useMapDisplayStore } from "~/stores/MapDisplay.store";
 
-const { selectedPlace, isUpdating, name, isInvalid, isPending } =
+const { lastHoveredPlace, isUpdating, name, isInvalid, isPending } =
   storeToRefs(useMapDisplayStore());
 const { removePlace, updatePlace, updatePlace2 } = useMapDisplayHandlers();
 </script>
 
 <template>
-  <template v-if="selectedPlace">
+  <template v-if="lastHoveredPlace">
     <li>
-      <a @click="removePlace(selectedPlace)">
+      <a @click="removePlace(lastHoveredPlace)">
         <TrashIcon class="size-6 text-neutral-500" />
         <span>Supprimer le lieu</span>
       </a>
@@ -25,7 +25,11 @@ const { removePlace, updatePlace, updatePlace2 } = useMapDisplayHandlers();
         <PencilIcon class="size-6 text-neutral-500" />
         <span>Editer le nom</span>
       </a>
-      <form v-else class="flex" @submit.prevent="updatePlace2(selectedPlace)">
+      <form
+        v-else
+        class="flex"
+        @submit.prevent="updatePlace2(lastHoveredPlace)"
+      >
         <span
           class="input input-sm input-bordered flex flex-grow items-center justify-between gap-0"
           :class="{ 'input-error': isInvalid }"

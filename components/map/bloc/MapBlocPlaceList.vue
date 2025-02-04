@@ -2,7 +2,7 @@
 import { TrashIcon } from "@heroicons/vue/24/solid";
 
 const placeStore = usePlaceStore();
-const { places } = storeToRefs(placeStore);
+const { places, panToSelectedPlaceLastDate } = storeToRefs(placeStore);
 
 const removePlace = async (id: string) => {
   await placeStore.remove([id]);
@@ -10,6 +10,10 @@ const removePlace = async (id: string) => {
 
 const selectPlace = (id: string) => {
   placeStore.select(id);
+
+  if (placeStore.selectedPlaceId) {
+    panToSelectedPlaceLastDate.value = new Date();
+  }
 };
 </script>
 

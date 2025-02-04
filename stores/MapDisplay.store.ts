@@ -5,7 +5,7 @@ import type { Place } from "~/interfaces/Place";
 
 export const useMapDisplayStore = defineStore("mapDisplay", () => {
   const hoverPlace = ref<Place | undefined>(undefined);
-  const selectedPlace = ref<Place | undefined>(undefined);
+  const lastHoveredPlace = ref<Place | undefined>(undefined);
   const gps = ref<GPS>({
     latitude: 0,
     longitude: 0,
@@ -38,7 +38,7 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
 
   return {
     hoverPlace,
-    selectedPlace,
+    lastHoveredPlace,
     gps,
     gpsCoord,
     isMenuVisible,

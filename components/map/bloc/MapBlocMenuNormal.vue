@@ -6,14 +6,14 @@ import {
   PlusIcon,
 } from "@heroicons/vue/24/solid";
 
-const { selectedPlace, isAdding, name, isInvalid, gpsCoord, isPending } =
+const { lastHoveredPlace, isAdding, name, isInvalid, gpsCoord, isPending } =
   storeToRefs(useMapDisplayStore());
 const { addPlace, addPlace2 } = useMapDisplayHandlers();
 const { copyGpsCoord } = useMapDisplayClipboardStore();
 </script>
 
 <template>
-  <template v-if="!selectedPlace">
+  <template v-if="!lastHoveredPlace">
     <li>
       <a @click="copyGpsCoord">
         <MapPinIcon class="size-6 text-neutral-500" />
