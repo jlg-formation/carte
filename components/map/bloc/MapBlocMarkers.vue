@@ -23,7 +23,7 @@ const handleMarkerMouseout = () => {
 <template>
   <LMarker
     v-for="place in places"
-    :key="place.gps.latitude"
+    :key="place.id"
     :lat-lng="[place.gps.latitude, place.gps.longitude]"
     @mouseover="handleMarkerMouseover(place)"
     @mouseout="handleMarkerMouseout()"

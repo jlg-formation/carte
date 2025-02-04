@@ -17,9 +17,9 @@ export const useMapDisplayStore = defineStore("mapDisplay", () => {
   const isInvalid = ref(false);
   const isPending = ref(false);
 
-  const debounced = debounce(500, async (newName: string) => {
+  const debounced = debounce(300, async (newName: string) => {
     console.log("start validation", newName);
-    await sleep(1000);
+    await sleep(300);
     isInvalid.value = ["bad", "terrible"].includes(newName);
     isPending.value = false;
     console.log("end validation", newName);
