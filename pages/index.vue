@@ -26,7 +26,10 @@ const AsyncButtonCallToAction = defineAsyncComponent(async () => {
                 <Suspense>
                   <AsyncButtonCallToAction />
                   <template #fallback>
-                    <span>Loading...</span>
+                    <span class="flex items-center justify-center gap-2">
+                      <span class="loading loading-ring"></span>
+                      <span>Loading...</span>
+                    </span>
                   </template>
                 </Suspense>
               </KeepAlive>
