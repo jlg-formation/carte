@@ -34,7 +34,7 @@ export default defineNuxtPlugin(() => {
       );
       console.log("isExistingEmail: ", isExistingEmail);
       if (isExistingEmail) {
-        return "Mail déjà pris";
+        return `${value} déjà pris`;
       }
       return true;
     }),
