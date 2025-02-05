@@ -1,9 +1,15 @@
-import { useForm } from "vee-validate";
+import { useForm, type RawFormSchema } from "vee-validate";
 import type { NewAccountForm } from "~/interfaces/NewAccountForm";
 
 export default function useNewAccount() {
   const errorMsg = ref("");
-  const schema = newAccountFormSchema();
+  const schema: RawFormSchema<NewAccountForm> = {
+    email: "required|email|emailAlreadyTaken",
+    newPassword: "required",
+    confirmNewPassword: "required|passwordMatch:@newPassword",
+    lastname: "required",
+    firstname: "required",
+  };
   const { isSubmitting, errors, meta, handleSubmit, isFieldTouched } =
     useForm<NewAccountForm>({ validationSchema: schema });
 
