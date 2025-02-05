@@ -1,3 +1,5 @@
+import removeConsole from "vite-plugin-remove-console";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
@@ -23,5 +25,8 @@ export default defineNuxtConfig({
   imports: {
     // Auto-import pinia stores defined in `~/stores`
     dirs: ["utils/validation"],
+  },
+  vite: {
+    plugins: [removeConsole()],
   },
 });
